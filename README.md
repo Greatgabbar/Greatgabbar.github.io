@@ -18,11 +18,17 @@ One portfolio, **three completely different experiences**, all pure HTML/CSS/JS 
 
 ## 🖥️ SHBM-OS (`os.html` + `os.css` + `os.js`)
 
-- Boot splash, glassmorphism windows you can **drag, minimize, close, and stack**
+- Boot splash, glassmorphism windows you can **drag, minimize, maximize, close, and stack**
 - Desktop apps: `about_me.txt` (Notepad), `experience.log` (LogViewer), `projects` (File Explorer), `skills.sys` (Task Manager with animated process bars — `coffee.sys 99%`), `contact.eml` (Mail compose that opens a real email)
-- Taskbar with running-app chips, live clock, and a Start menu
+- **💻 cmd.exe** — a real shell inside the OS: `help`, `neofetch` (ASCII system info), `open <app>`, `matrix`, `sudo hire`, `vim`, `rm`…
+- **🐍 snake.exe** — fully playable Snake (arrows/WASD, eat the ☕, R to restart)
+- **📎 Hiry** — a Clippy-parody hiring assistant with rotating tips and action buttons
+- **🌧️ Matrix screensaver** — auto-starts after 75s idle, or via `matrix` / right-click
+- **🏆 Achievements** — 5 unlockable achievements with toast notifications (Hacker, Certified Gamer, Explorer, HR Material, Made a Friend) + completionist bonus
+- **🖱️ Right-click context menu** — 3 wallpaper themes, screensaver, refresh, "sort by vibes"
+- **🗑️ Recycle Bin** — `imposter_syndrome.exe`, `rejected_offers/` (empty, kept out of optimism)
+- Taskbar with running-app chips, achievement counter, live clock, and a Start menu
 - "Shut Down" refuses: *candidate still hireable* 😄
-- `terminal.exe` and `classic.site` desktop icons jump between designs
 
 ## 🎨 Classic (`classic.html` + `style.css` + `script.js`)
 

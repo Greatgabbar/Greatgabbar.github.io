@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SHBM-OS — Shubham Trivedi</title>
-  <meta name="description" content="Shubham Trivedi's portfolio as a desktop operating system. Open the windows. Explore the apps. Hire the human." />
+  <meta name="description" content="Shubham Trivedi's portfolio as a desktop operating system. Open the windows. Play the games. Hire the human." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖥️</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,18 +31,21 @@
       <button class="icon" data-open="win-projects"><span>📁</span>projects</button>
       <button class="icon" data-open="win-skills"><span>📊</span>skills.sys</button>
       <button class="icon" data-open="win-contact"><span>✉️</span>contact.eml</button>
-      <a class="icon" href="index.html"><span>🟩</span>terminal.exe</a>
+      <button class="icon" data-open="win-terminal"><span>💻</span>cmd.exe</button>
+      <button class="icon" data-open="win-snake"><span>🐍</span>snake.exe</button>
+      <button class="icon" data-open="win-recycle"><span>🗑️</span>recycle bin</button>
+      <a class="icon" href="index.html"><span>🟩</span>terminal.site</a>
       <a class="icon" href="classic.html"><span>🎨</span>classic.site</a>
       <a class="icon" href="https://github.com/Greatgabbar" target="_blank" rel="noopener"><span>🐙</span>github.lnk</a>
       <a class="icon" href="https://www.linkedin.com/in/shubhamtrivedi07/" target="_blank" rel="noopener"><span>💼</span>linkedin.lnk</a>
     </div>
 
-    <p class="desktop-hint">double-click nothing — one click opens everything · drag windows by their title bar</p>
+    <p class="desktop-hint">one click opens everything · drag windows by their title bar · try right-clicking the desktop</p>
 
     <!-- ===== WINDOW: ABOUT ===== -->
-    <section class="window" id="win-about" data-title="📄 about_me.txt — Notepad" style="--x: 8%; --y: 10%; --w: 540px">
+    <section class="window" id="win-about" data-title="📄 about_me.txt" style="--x: 8%; --y: 10%; --w: 540px">
       <header class="win-head">
-        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max"></i></div>
+        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max" data-max></i></div>
         <span class="win-title">📄 about_me.txt — Notepad</span>
       </header>
       <div class="win-body pad mono-body">
@@ -65,9 +68,9 @@ interned at Gamezop on portals now serving <b>~40M users</b>.</p>
     </section>
 
     <!-- ===== WINDOW: EXPERIENCE ===== -->
-    <section class="window" id="win-exp" data-title="🗒️ experience.log — LogViewer" style="--x: 16%; --y: 16%; --w: 640px">
+    <section class="window" id="win-exp" data-title="🗒️ experience.log" style="--x: 16%; --y: 16%; --w: 640px">
       <header class="win-head">
-        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max"></i></div>
+        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max" data-max></i></div>
         <span class="win-title">🗒️ experience.log — LogViewer</span>
       </header>
       <div class="win-body log">
@@ -91,9 +94,9 @@ interned at Gamezop on portals now serving <b>~40M users</b>.</p>
     </section>
 
     <!-- ===== WINDOW: PROJECTS ===== -->
-    <section class="window" id="win-projects" data-title="📁 projects — File Explorer" style="--x: 24%; --y: 22%; --w: 620px">
+    <section class="window" id="win-projects" data-title="📁 projects" style="--x: 24%; --y: 22%; --w: 620px">
       <header class="win-head">
-        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max"></i></div>
+        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max" data-max></i></div>
         <span class="win-title">📁 projects — File Explorer</span>
       </header>
       <div class="win-body">
@@ -113,9 +116,9 @@ interned at Gamezop on portals now serving <b>~40M users</b>.</p>
     </section>
 
     <!-- ===== WINDOW: SKILLS (TASK MANAGER) ===== -->
-    <section class="window" id="win-skills" data-title="📊 skills.sys — Task Manager" style="--x: 34%; --y: 12%; --w: 470px">
+    <section class="window" id="win-skills" data-title="📊 skills.sys" style="--x: 34%; --y: 12%; --w: 470px">
       <header class="win-head">
-        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max"></i></div>
+        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max" data-max></i></div>
         <span class="win-title">📊 skills.sys — Task Manager</span>
       </header>
       <div class="win-body pad">
@@ -125,9 +128,9 @@ interned at Gamezop on portals now serving <b>~40M users</b>.</p>
     </section>
 
     <!-- ===== WINDOW: CONTACT (MAIL) ===== -->
-    <section class="window" id="win-contact" data-title="✉️ contact.eml — Mail" style="--x: 30%; --y: 26%; --w: 500px">
+    <section class="window" id="win-contact" data-title="✉️ contact.eml" style="--x: 30%; --y: 26%; --w: 500px">
       <header class="win-head">
-        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max"></i></div>
+        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max" data-max></i></div>
         <span class="win-title">✉️ New Message — Mail</span>
       </header>
       <div class="win-body">
@@ -144,6 +147,79 @@ We saw your OS-shaped portfolio and we'd like to talk...</textarea>
       </div>
     </section>
 
+    <!-- ===== WINDOW: TERMINAL (CMD.EXE) ===== -->
+    <section class="window" id="win-terminal" data-title="💻 cmd.exe" style="--x: 20%; --y: 14%; --w: 580px">
+      <header class="win-head">
+        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max" data-max></i></div>
+        <span class="win-title">💻 cmd.exe — SHBM Shell</span>
+      </header>
+      <div class="win-body term" id="termScreen">
+        <div id="termOut">SHBM Shell [v9.07] — type 'help' to begin, 'neofetch' to show off.
+</div>
+        <div class="term-line">
+          <span class="term-prompt">C:\Users\recruiter&gt;</span>
+          <input id="termIn" class="term-input" autocomplete="off" spellcheck="false" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WINDOW: SNAKE ===== -->
+    <section class="window" id="win-snake" data-title="🐍 snake.exe" style="--x: 38%; --y: 16%; --w: 356px">
+      <header class="win-head">
+        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max" data-max></i></div>
+        <span class="win-title">🐍 snake.exe — score: <b id="snakeScore">0</b></span>
+      </header>
+      <div class="win-body snake-body">
+        <canvas id="snakeCanvas" width="320" height="320"></canvas>
+        <p class="snake-help mono">arrows / WASD to move · eat the ☕ · R to restart<br />every 5 points = one more reason to hire him</p>
+      </div>
+    </section>
+
+    <!-- ===== WINDOW: RECYCLE BIN ===== -->
+    <section class="window" id="win-recycle" data-title="🗑️ recycle bin" style="--x: 26%; --y: 24%; --w: 460px">
+      <header class="win-head">
+        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max" data-max></i></div>
+        <span class="win-title">🗑️ Recycle Bin — 6 items (none worth restoring)</span>
+      </header>
+      <div class="win-body">
+        <div class="files bin">
+          <button class="file"><span>👻</span><b>imposter_syndrome.exe</b><i>deleted 2023 — runs on nobody now</i></button>
+          <button class="file"><span>📉</span><b>200ms_latency.old</b><i>replaced by 7ms — good riddance</i></button>
+          <button class="file"><span>📂</span><b>rejected_offers/</b><i>empty. folder kept out of optimism</i></button>
+          <button class="file"><span>🐛</span><b>bugs.zip</b><i>96.5% smaller since 2025</i></button>
+          <button class="file"><span>💤</span><b>sleep_schedule.cfg</b><i>corrupted during hackathons</i></button>
+          <button class="file"><span>🎓</span><b>plan_B.docx</b><i>never needed — see GPA 9.07</i></button>
+        </div>
+        <p class="bin-note mono dim">tip: clicking these does nothing. some things belong in the past.</p>
+      </div>
+    </section>
+
+    <!-- ===== CLIPPY (HIRY) ===== -->
+    <div class="clippy" id="clippy" hidden>
+      <div class="clippy-bubble">
+        <p id="clippyText">It looks like you're trying to evaluate a candidate. Would you like help?</p>
+        <div class="clippy-actions">
+          <button id="clippyHighlights">📄 Show highlights</button>
+          <button id="clippyHire">✉️ Hire him</button>
+        </div>
+      </div>
+      <button class="clippy-char" id="clippyChar" title="Hiry — your hiring assistant">📎</button>
+      <button class="clippy-close" id="clippyClose">✕</button>
+    </div>
+
+    <!-- ===== TOASTS ===== -->
+    <div class="toasts" id="toasts"></div>
+
+    <!-- ===== CONTEXT MENU ===== -->
+    <div class="ctxmenu" id="ctxmenu" hidden>
+      <button data-ctx="terminal">💻 Open Terminal</button>
+      <button data-ctx="wallpaper">🖼️ Change Wallpaper</button>
+      <button data-ctx="screensaver">🌧️ Start Screensaver</button>
+      <button data-ctx="refresh">🔄 Refresh</button>
+      <hr />
+      <button data-ctx="sort">🌀 Sort by: vibes ✓</button>
+    </div>
+
     <!-- ===== START MENU ===== -->
     <div class="startmenu" id="startmenu" hidden>
       <div class="sm-user">
@@ -155,6 +231,8 @@ We saw your OS-shaped portfolio and we'd like to talk...</textarea>
       <button class="sm-item" data-open="win-projects">📁 Projects</button>
       <button class="sm-item" data-open="win-skills">📊 Skills</button>
       <button class="sm-item" data-open="win-contact">✉️ Contact</button>
+      <button class="sm-item" data-open="win-terminal">💻 Terminal</button>
+      <button class="sm-item" data-open="win-snake">🐍 Snake</button>
       <hr />
       <a class="sm-item" href="index.html">🟩 Restart in Terminal Mode</a>
       <a class="sm-item" href="classic.html">🎨 Restart in Classic Mode</a>
@@ -165,7 +243,7 @@ We saw your OS-shaped portfolio and we'd like to talk...</textarea>
     <footer class="taskbar">
       <button class="start" id="startBtn"><span>🖥️</span> START</button>
       <div class="tasks" id="tasks"></div>
-      <div class="tray mono"><span id="osClock">--:--</span></div>
+      <div class="tray mono"><span id="trophies" title="achievements unlocked">🏆 0/5</span><span id="osClock">--:--</span></div>
     </footer>
 
     <!-- ===== SHUTDOWN OVERLAY ===== -->
@@ -174,6 +252,9 @@ We saw your OS-shaped portfolio and we'd like to talk...</textarea>
       <p class="dim">Reason: candidate still hireable. Try the SEND button instead.</p>
       <button id="rebootBtn">↩ RETURN TO DESKTOP</button>
     </div>
+
+    <!-- ===== SCREENSAVER ===== -->
+    <canvas class="screensaver" id="screensaver" hidden></canvas>
 
   </div>
 

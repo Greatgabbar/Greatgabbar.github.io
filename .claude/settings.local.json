@@ -11,7 +11,10 @@
       "Bash(gh auth *)",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git commit -m 'Portfolio: SHBM Terminal + SHBM-OS + Classic *)"
+      "Bash(git commit -m 'Portfolio: SHBM Terminal + SHBM-OS + Classic *)",
+      "Bash(git credential *)",
+      "Bash(git remote *)",
+      "Bash(git push *)"
     ]
   }
 }
