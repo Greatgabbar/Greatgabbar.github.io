@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHBM-OS — Shubham Trivedi</title>
+  <meta name="description" content="Shubham Trivedi's portfolio as a desktop operating system. Open the windows. Explore the apps. Hire the human." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖥️</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="os.css" />
+</head>
+<body>
+
+  <!-- ===== BOOT SPLASH ===== -->
+  <div class="splash" id="splash">
+    <div class="splash-logo">🖥️</div>
+    <p class="splash-name">SHBM-OS</p>
+    <div class="splash-bar"><i></i></div>
+    <p class="splash-sub">v9.07 · booting the career of Shubham Trivedi…</p>
+  </div>
+
+  <!-- ===== DESKTOP ===== -->
+  <div class="desktop" id="desktop">
+
+    <!-- Desktop icons -->
+    <div class="icons">
+      <button class="icon" data-open="win-about"><span>📄</span>about_me.txt</button>
+      <button class="icon" data-open="win-exp"><span>🗒️</span>experience.log</button>
+      <button class="icon" data-open="win-projects"><span>📁</span>projects</button>
+      <button class="icon" data-open="win-skills"><span>📊</span>skills.sys</button>
+      <button class="icon" data-open="win-contact"><span>✉️</span>contact.eml</button>
+      <a class="icon" href="index.html"><span>🟩</span>terminal.exe</a>
+      <a class="icon" href="classic.html"><span>🎨</span>classic.site</a>
+      <a class="icon" href="https://github.com/Greatgabbar" target="_blank" rel="noopener"><span>🐙</span>github.lnk</a>
+      <a class="icon" href="https://www.linkedin.com/in/shubhamtrivedi07/" target="_blank" rel="noopener"><span>💼</span>linkedin.lnk</a>
+    </div>
+
+    <p class="desktop-hint">double-click nothing — one click opens everything · drag windows by their title bar</p>
+
+    <!-- ===== WINDOW: ABOUT ===== -->
+    <section class="window" id="win-about" data-title="📄 about_me.txt — Notepad" style="--x: 8%; --y: 10%; --w: 540px">
+      <header class="win-head">
+        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max"></i></div>
+        <span class="win-title">📄 about_me.txt — Notepad</span>
+      </header>
+      <div class="win-body pad mono-body">
+<p># SHUBHAM TRIVEDI</p>
+<p># Software Engineer · Hyderabad, India</p>
+<p>&nbsp;</p>
+<p>Currently: building trading infrastructure at <b>Goldman Sachs</b> —
+Kafka + OpenTelemetry pipelines chewing through 5M+ metrics/day,
+EOD engines generating 1M+ reports/day, and the occasional
+28x latency win (200ms → 7ms, still proud).</p>
+<p>&nbsp;</p>
+<p>Previously: led <b>GenAI</b> work at GEP Worldwide — a framework that
+turns text prompts into deployable UIs (−60% build time) — and
+interned at Gamezop on portals now serving <b>~40M users</b>.</p>
+<p>&nbsp;</p>
+<p>Degree: BE Computer Engineering, Thapar Institute — <b>9.07 GPA</b>.</p>
+<p>Habitat: hackathons (2x winner), OWASP chapter (mentored 250+).</p>
+<p>Status: <b>hireable</b>. This OS has no license fee; the human does.</p>
+      </div>
+    </section>
+
+    <!-- ===== WINDOW: EXPERIENCE ===== -->
+    <section class="window" id="win-exp" data-title="🗒️ experience.log — LogViewer" style="--x: 16%; --y: 16%; --w: 640px">
+      <header class="win-head">
+        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max"></i></div>
+        <span class="win-title">🗒️ experience.log — LogViewer</span>
+      </header>
+      <div class="win-body log">
+        <p><span class="lv ok">[OK]</span> <b>2025-06 → now · GOLDMAN SACHS · Software Engineer</b></p>
+        <p class="lg">├─ built Kafka+OTel pipeline — 5M+ trading metrics/day (BQL, Snowflake)</p>
+        <p class="lg">├─ EOD reporting engine — 1M+ reports/day, batched to spare the DB</p>
+        <p class="lg">├─ trade-booking latency 200ms → 7ms <span class="hl">(28x faster)</span></p>
+        <p class="lg">└─ migrated 100+ on-prem jobs to cloud — infra costs −30%, reliability +25%</p>
+        <p><span class="lv ok">[OK]</span> <b>2023-01 → 2025-06 · GEP WORLDWIDE · Software Engineer</b></p>
+        <p class="lg">├─ led GenAI prompt→UI plugin framework <span class="hl">(build time −60%)</span></p>
+        <p class="lg">├─ GenAI supplier recommendation system — accuracy +40%</p>
+        <p class="lg">├─ client onboarding 30% faster</p>
+        <p class="lg">└─ Cypress automation — manual QA −50%</p>
+        <p><span class="lv ok">[OK]</span> <b>2022-04 → 2023-01 · GAMEZOP · Frontend Intern</b></p>
+        <p class="lg">├─ shipped admin portal — efficiency +63%</p>
+        <p class="lg">└─ built on Quizzop &amp; Skillclash — live for <span class="hl">~40M users</span></p>
+        <p><span class="lv info">[INFO]</span> <b>2019 → 2023 · THAPAR INSTITUTE · BE Computer Engg — GPA 9.07</b></p>
+        <p class="lg">└─ OS · OOP · DSA · DBMS · NLP · Predictive Analytics · Networks</p>
+        <p><span class="lv warn">[WARN]</span> no failures found in log. suspiciously clean.</p>
+      </div>
+    </section>
+
+    <!-- ===== WINDOW: PROJECTS ===== -->
+    <section class="window" id="win-projects" data-title="📁 projects — File Explorer" style="--x: 24%; --y: 22%; --w: 620px">
+      <header class="win-head">
+        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max"></i></div>
+        <span class="win-title">📁 projects — File Explorer</span>
+      </header>
+      <div class="win-body">
+        <div class="explorer-bar mono">C:\Users\shubham\projects&gt; <span class="dim">9 items · all shipped</span></div>
+        <div class="files">
+          <a class="file" href="https://github.com/Greatgabbar" target="_blank" rel="noopener"><span>🛒</span><b>pansari/</b><i>pandemic grocery portal — React·Node</i></a>
+          <a class="file" href="https://discord.com/oauth2/authorize?client_id=816994233557844039&scope=bot" target="_blank" rel="noopener"><span>🎵</span><b>huihui-bot/</b><i>zero-config Discord music bot</i></a>
+          <a class="file" href="https://github.com/Greatgabbar/Certificate-Generator" target="_blank" rel="noopener"><span>📜</span><b>cert-generator/</b><i>bulk certificate automation ★</i></a>
+          <a class="file" href="https://github.com/Greatgabbar/Chrome-dinosaur-game" target="_blank" rel="noopener"><span>🦖</span><b>dino-game/</b><i>TS remake of the classic runner</i></a>
+          <a class="file" href="https://github.com/Greatgabbar/Legal-Court-Ledger" target="_blank" rel="noopener"><span>⚖️</span><b>court-ledger/</b><i>judicial records, digitized</i></a>
+          <a class="file" href="https://github.com/Greatgabbar/TimeSeriesPrediction" target="_blank" rel="noopener"><span>📈</span><b>ts-prediction/</b><i>forecasting in Jupyter</i></a>
+          <a class="file" href="https://github.com/Greatgabbar/gophercises" target="_blank" rel="noopener"><span>🐹</span><b>gophercises/</b><i>Go exercises &amp; projects</i></a>
+          <a class="file" href="https://github.com/Greatgabbar/Web-scrapper" target="_blank" rel="noopener"><span>🕷️</span><b>web-scraper/</b><i>automation &amp; extraction</i></a>
+          <a class="file" href="https://github.com/Greatgabbar?tab=repositories" target="_blank" rel="noopener"><span>➕</span><b>all_53_repos.lnk</b><i>open GitHub →</i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WINDOW: SKILLS (TASK MANAGER) ===== -->
+    <section class="window" id="win-skills" data-title="📊 skills.sys — Task Manager" style="--x: 34%; --y: 12%; --w: 470px">
+      <header class="win-head">
+        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max"></i></div>
+        <span class="win-title">📊 skills.sys — Task Manager</span>
+      </header>
+      <div class="win-body pad">
+        <p class="tm-note mono">Processes: 20 running · 0 unresponsive · uptime 7 yrs</p>
+        <div class="tm" id="taskman"></div>
+      </div>
+    </section>
+
+    <!-- ===== WINDOW: CONTACT (MAIL) ===== -->
+    <section class="window" id="win-contact" data-title="✉️ contact.eml — Mail" style="--x: 30%; --y: 26%; --w: 500px">
+      <header class="win-head">
+        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max"></i></div>
+        <span class="win-title">✉️ New Message — Mail</span>
+      </header>
+      <div class="win-body">
+        <div class="mail-row"><span>To:</span><b>shubham072001@gmail.com</b></div>
+        <div class="mail-row"><span>Cc:</span><i class="dim">+91 81782 61858 (old school works too)</i></div>
+        <div class="mail-row"><span>Subject:</span><input id="mailSubject" value="Opportunity for you 🚀" /></div>
+        <textarea id="mailBody" class="mail-body" rows="6">Hi Shubham,
+
+We saw your OS-shaped portfolio and we'd like to talk...</textarea>
+        <div class="mail-actions">
+          <button class="send-btn" id="sendMail">▶ SEND</button>
+          <span class="dim mono">attachments: enthusiasm.zip (unlimited size)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== START MENU ===== -->
+    <div class="startmenu" id="startmenu" hidden>
+      <div class="sm-user">
+        <img src="https://avatars.githubusercontent.com/u/63102346?v=4" alt="" />
+        <div><b>Shubham Trivedi</b><br /><span class="dim">Administrator · hireable</span></div>
+      </div>
+      <button class="sm-item" data-open="win-about">📄 About Me</button>
+      <button class="sm-item" data-open="win-exp">🗒️ Experience</button>
+      <button class="sm-item" data-open="win-projects">📁 Projects</button>
+      <button class="sm-item" data-open="win-skills">📊 Skills</button>
+      <button class="sm-item" data-open="win-contact">✉️ Contact</button>
+      <hr />
+      <a class="sm-item" href="index.html">🟩 Restart in Terminal Mode</a>
+      <a class="sm-item" href="classic.html">🎨 Restart in Classic Mode</a>
+      <button class="sm-item" id="shutdownBtn">⏻ Shut Down</button>
+    </div>
+
+    <!-- ===== TASKBAR ===== -->
+    <footer class="taskbar">
+      <button class="start" id="startBtn"><span>🖥️</span> START</button>
+      <div class="tasks" id="tasks"></div>
+      <div class="tray mono"><span id="osClock">--:--</span></div>
+    </footer>
+
+    <!-- ===== SHUTDOWN OVERLAY ===== -->
+    <div class="shutdown" id="shutdown" hidden>
+      <p>SHBM-OS refuses to shut down.</p>
+      <p class="dim">Reason: candidate still hireable. Try the SEND button instead.</p>
+      <button id="rebootBtn">↩ RETURN TO DESKTOP</button>
+    </div>
+
+  </div>
+
+  <script src="os.js"></script>
+</body>
+</html>

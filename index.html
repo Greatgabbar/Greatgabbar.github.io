@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHBM ▲ Shubham Trivedi — Trading Terminal</title>
+  <meta name="description" content="Shubham Trivedi — Software Engineer at Goldman Sachs. Portfolio, rendered as a trading terminal. The stock is me." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="terminal.css" />
+</head>
+<body>
+
+  <!-- CRT overlay effects -->
+  <div class="crt-scanlines" aria-hidden="true"></div>
+  <div class="crt-vignette" aria-hidden="true"></div>
+
+  <!-- ============ BOOT SEQUENCE ============ -->
+  <div class="boot" id="boot">
+    <pre class="boot-log" id="bootLog"></pre>
+    <p class="boot-skip">[ PRESS ANY KEY OR CLICK TO SKIP ]</p>
+  </div>
+
+  <!-- ============ HEADER BAR ============ -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="logo glow-green">SHBM<span class="blink">▮</span>TERMINAL</span>
+      <span class="badge live"><i></i>LIVE</span>
+    </div>
+    <div class="topbar-right">
+      <span class="quote-chip">SHBM <b class="up">▲ 28.0x</b></span>
+      <span id="clock" class="clock">--:--:-- IST</span>
+      <a class="badge cyan" href="os.html" title="Boot the desktop OS experience">SHBM-OS</a>
+      <a class="badge amber" href="classic.html" title="View the classic design">CLASSIC UI</a>
+    </div>
+  </header>
+
+  <!-- ============ TICKER TAPE ============ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+
+  <!-- ============ COMMAND LINE ============ -->
+  <div class="cmdbar">
+    <label for="cmd" class="prompt glow-green">RECRUITER@SHBM:~$</label>
+    <input id="cmd" class="cmd-input" type="text" autocomplete="off" spellcheck="false"
+           placeholder="type 'help' and hit ENTER — yes, it actually works" />
+  </div>
+  <pre class="cmd-output" id="cmdOutput" hidden></pre>
+
+  <!-- ============ DASHBOARD GRID ============ -->
+  <main class="grid">
+
+    <!-- ===== SECURITY PROFILE ===== -->
+    <section class="panel" id="panel-profile" style="grid-area: profile">
+      <header class="panel-head"><span class="panel-key">[0]</span> SECURITY PROFILE</header>
+      <div class="profile">
+        <img class="avatar" src="https://avatars.githubusercontent.com/u/63102346?v=4" alt="Shubham Trivedi" />
+        <div class="profile-id">
+          <h1 class="glow-green">SHUBHAM TRIVEDI</h1>
+          <p class="dim">NYSE: <b class="up">SHBM</b> · SECTOR: SOFTWARE ENGINEERING</p>
+        </div>
+      </div>
+      <table class="kv">
+        <tr><td>CURRENT DESK</td><td class="up">GOLDMAN SACHS — SWE</td></tr>
+        <tr><td>LOCATION</td><td>HYDERABAD, IN</td></tr>
+        <tr><td>LISTED SINCE</td><td>2019 (IPO: THAPAR)</td></tr>
+        <tr><td>RATING</td><td class="up">STRONG BUY ★★★★★</td></tr>
+        <tr><td>STATUS</td><td><span class="badge live sm"><i></i>HIREABLE</span></td></tr>
+      </table>
+      <div class="profile-links">
+        <a href="https://github.com/Greatgabbar" target="_blank" rel="noopener">[GITHUB]</a>
+        <a href="https://www.linkedin.com/in/shubhamtrivedi07/" target="_blank" rel="noopener">[LINKEDIN]</a>
+        <a href="https://leetcode.com/GreatGabbar/" target="_blank" rel="noopener">[LEETCODE]</a>
+        <a href="mailto:shubham072001@gmail.com">[EMAIL]</a>
+      </div>
+    </section>
+
+    <!-- ===== CAREER INDEX CHART ===== -->
+    <section class="panel" id="panel-chart" style="grid-area: chart">
+      <header class="panel-head">
+        <span><span class="panel-key">[1]</span> SHBM CAREER INDEX — ALL-TIME</span>
+        <span class="up glow-green">▲ ALL-TIME HIGH</span>
+      </header>
+      <canvas id="careerChart" height="270"></canvas>
+      <div class="chart-stats">
+        <div><span class="dim">LATENCY CUT</span><b class="up">200ms → 7ms</b></div>
+        <div><span class="dim">METRICS/DAY</span><b class="up">5M+</b></div>
+        <div><span class="dim">REPORTS/DAY</span><b class="up">1M+</b></div>
+        <div><span class="dim">USERS SERVED</span><b class="up">40M</b></div>
+        <div><span class="dim">GPA</span><b class="up">9.07</b></div>
+      </div>
+    </section>
+
+    <!-- ===== TRADE BLOTTER (EXPERIENCE) ===== -->
+    <section class="panel" id="panel-blotter" style="grid-area: blotter">
+      <header class="panel-head"><span class="panel-key">[2]</span> TRADE BLOTTER — CAREER EXECUTIONS</header>
+      <div class="tablewrap">
+        <table class="blotter">
+          <thead>
+            <tr><th>TIME</th><th>SIDE</th><th>COUNTERPARTY</th><th>POSITION</th><th>FILL DETAILS</th><th>P&amp;L</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="dim">JUN'25—NOW</td>
+              <td><span class="side buy">BUY</span></td>
+              <td class="glow-green">GOLDMAN SACHS</td>
+              <td>Software Engineer</td>
+              <td>Kafka+OTel pipeline @ 5M metrics/day · EOD engine @ 1M reports/day · migrated 100+ jobs to cloud (−30% infra)</td>
+              <td class="up">+28x LATENCY</td>
+            </tr>
+            <tr>
+              <td class="dim">JAN'23—JUN'25</td>
+              <td><span class="side buy">BUY</span></td>
+              <td class="glow-green">GEP WORLDWIDE</td>
+              <td>Software Engineer</td>
+              <td>Led GenAI prompt→UI plugin framework · GenAI supplier recsys (+40% accuracy) · Cypress automation (−50% manual QA)</td>
+              <td class="up">−60% BUILD TIME</td>
+            </tr>
+            <tr>
+              <td class="dim">APR'22—JAN'23</td>
+              <td><span class="side buy">BUY</span></td>
+              <td class="glow-green">GAMEZOP</td>
+              <td>Frontend Dev Intern</td>
+              <td>Shipped admin portal (+63% efficiency) · built on Quizzop &amp; Skillclash — live for ~40M users</td>
+              <td class="up">+40M USERS</td>
+            </tr>
+            <tr>
+              <td class="dim">2019—2023</td>
+              <td><span class="side ipo">IPO</span></td>
+              <td class="glow-green">THAPAR INSTITUTE</td>
+              <td>BE Computer Engg</td>
+              <td>OS · OOP · DSA · DBMS · NLP · Predictive Analytics · Computer Networks</td>
+              <td class="up">GPA 9.07</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== ORDER BOOK (SKILLS) ===== -->
+    <section class="panel" id="panel-book" style="grid-area: book">
+      <header class="panel-head"><span class="panel-key">[3]</span> ORDER BOOK — SKILLS DEPTH</header>
+      <div class="book">
+        <div class="book-col">
+          <p class="book-title up">BID — SYSTEMS &amp; BACKEND</p>
+          <div class="book-rows" id="bidRows"></div>
+        </div>
+        <div class="book-col">
+          <p class="book-title ask">ASK — FRONTEND &amp; TOOLING</p>
+          <div class="book-rows" id="askRows"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HOLDINGS (PROJECTS) ===== -->
+    <section class="panel" id="panel-holdings" style="grid-area: holdings">
+      <header class="panel-head">
+        <span><span class="panel-key">[4]</span> PORTFOLIO HOLDINGS — SIDE PROJECTS</span>
+        <a class="dim link" href="https://github.com/Greatgabbar?tab=repositories" target="_blank" rel="noopener">VIEW ALL 53 →</a>
+      </header>
+      <div class="holdings">
+        <a class="holding" href="https://github.com/Greatgabbar" target="_blank" rel="noopener">
+          <div class="holding-top"><b>PNSR</b><span class="up">▲ PANDEMIC PLAY</span></div>
+          <p class="holding-name">Pansari</p>
+          <p class="dim">Shopkeeper↔customer portal — slot booking, stock tracking, in-store passes.</p>
+          <p class="holding-tags">REACT · TAILWIND · NODE</p>
+        </a>
+        <a class="holding" href="https://discord.com/oauth2/authorize?client_id=816994233557844039&scope=bot" target="_blank" rel="noopener">
+          <div class="holding-top"><b>HUIH</b><span class="up">▲ ZERO CONFIG</span></div>
+          <p class="holding-name">HuiHui-Bot</p>
+          <p class="dim">High-quality Discord music bot. Invite &amp; play — no setup.</p>
+          <p class="holding-tags">JS · DISCORD.JS</p>
+        </a>
+        <a class="holding" href="https://github.com/Greatgabbar/Certificate-Generator" target="_blank" rel="noopener">
+          <div class="holding-top"><b>CERT</b><span class="up">▲ ★ MOST HELD</span></div>
+          <p class="holding-name">Certificate Generator</p>
+          <p class="dim">Bulk-generates personalized certificates automatically.</p>
+          <p class="holding-tags">HTML · AUTOMATION</p>
+        </a>
+        <a class="holding" href="https://github.com/Greatgabbar/Chrome-dinosaur-game" target="_blank" rel="noopener">
+          <div class="holding-top"><b>DINO</b><span class="up">▲ RUNNER</span></div>
+          <p class="holding-name">Chrome Dinosaur Game</p>
+          <p class="dim">TypeScript remake of the offline dino classic, on Vercel.</p>
+          <p class="holding-tags">TYPESCRIPT · CANVAS</p>
+        </a>
+        <a class="holding" href="https://github.com/Greatgabbar/Legal-Court-Ledger" target="_blank" rel="noopener">
+          <div class="holding-top"><b>LGLC</b><span class="up">▲ CIVIC TECH</span></div>
+          <p class="holding-name">Legal Court Ledger</p>
+          <p class="dim">Digital judicial record management system.</p>
+          <p class="holding-tags">JS · CSS</p>
+        </a>
+        <a class="holding" href="https://github.com/Greatgabbar/TimeSeriesPrediction" target="_blank" rel="noopener">
+          <div class="holding-top"><b>TSPR</b><span class="up">▲ QUANT</span></div>
+          <p class="holding-name">Time Series Prediction</p>
+          <p class="dim">Forecasting experiments on temporal data in Jupyter.</p>
+          <p class="holding-tags">PYTHON · ML</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== NEWS WIRE (ACHIEVEMENTS) ===== -->
+    <section class="panel" id="panel-news" style="grid-area: news">
+      <header class="panel-head"><span class="panel-key">[5]</span> NEWS WIRE — SHBM HEADLINES</header>
+      <ul class="news">
+        <li><span class="dim">25-06-02 09:30</span> <b class="up">BREAKING:</b> TRIVEDI JOINS GOLDMAN SACHS — TRADE LATENCY PLUNGES 96.5% ON THE NEWS</li>
+        <li><span class="dim">24-11-14 14:02</span> GENAI PROMPT→UI FRAMEWORK SLASHES FRONTEND BUILD TIME 60% AT GEP</li>
+        <li><span class="dim">23-05-30 10:00</span> SHBM GRADUATES THAPAR AT 9.07 GPA; ANALYSTS UPGRADE TO STRONG BUY</li>
+        <li><span class="dim">22-08-19 18:45</span> GAMEZOP PORTALS TOUCH 40M USERS; INTERN CREDITED WITH +63% EFFICIENCY</li>
+        <li><span class="dim">21-03-27 21:12</span> <b class="up">WINNER:</b> HACKOWASP 2.1 &amp; INCUBATIVE GITHUB HACKATHON</li>
+        <li><span class="dim">20-08-01 11:00</span> OWASP TECH SECRETARY ONBOARDS 250+ STUDENTS INTO TECH — "CODING CULTURE" RALLY</li>
+      </ul>
+    </section>
+
+    <!-- ===== EXECUTE ORDER (CONTACT) ===== -->
+    <section class="panel execute" id="panel-execute" style="grid-area: execute">
+      <header class="panel-head"><span class="panel-key">[6]</span> EXECUTE ORDER</header>
+      <p class="execute-line">MARKET IS <b class="up glow-green">OPEN</b>. SHBM IS ACCEPTING OFFERS.</p>
+      <a class="hire-btn" href="mailto:shubham072001@gmail.com?subject=BUY%20ORDER%3A%20SHBM&body=Hi%20Shubham%2C%20we%27d%20like%20to%20open%20a%20position...">
+        ▶ PLACE BUY ORDER — HIRE ME
+      </a>
+      <p class="dim center-sm">shubham072001@gmail.com · +91 81782 61858</p>
+      <p class="dim center-sm ticker-note">no bots were harmed · quotes delayed by 0ms</p>
+    </section>
+
+  </main>
+
+  <footer class="statusbar">
+    <span>© 2026 SHUBHAM TRIVEDI · BUILT WITH CAFFEINE &amp; CONVICTION</span>
+    <span class="dim">TIP: PRESS <b>/</b> TO TRADE COMMANDS · KEYS 0–6 JUMP TO PANELS</span>
+  </footer>
+
+  <script src="terminal.js"></script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shubham Trivedi — Software Engineer</title>
+  <meta name="description" content="Portfolio of Shubham Trivedi — Software Engineer at Goldman Sachs. Full-stack, distributed systems & GenAI." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Animated background -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-blob blob-1" aria-hidden="true"></div>
+  <div class="bg-blob blob-2" aria-hidden="true"></div>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="nav" id="navbar">
+    <a href="#home" class="nav-logo">&lt;ST /&gt;</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="index.html" class="mono" title="Trading terminal mode">⚡Terminal</a>
+      <a href="os.html" class="mono" title="Desktop OS mode">🖥️OS</a>
+    </nav>
+    <a class="btn btn-sm btn-outline" href="mailto:shubham072001@gmail.com">Hire Me</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="hero-content reveal">
+        <p class="hero-kicker mono">Hi, my name is</p>
+        <h1 class="hero-name">Shubham <span class="grad">Trivedi</span></h1>
+        <h2 class="hero-role">I build <span class="typed" id="typed"></span><span class="cursor">|</span></h2>
+        <p class="hero-blurb">
+          Software Engineer at <strong>Goldman Sachs</strong>, crafting high-performance
+          distributed systems and GenAI-powered products. Previously shipped software
+          used by <strong>40M+ users</strong> at Gamezop and led GenAI initiatives at GEP.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View My Work</a>
+          <a class="btn btn-outline" href="mailto:shubham072001@gmail.com">Get In Touch</a>
+        </div>
+        <div class="socials">
+          <a href="https://github.com/Greatgabbar" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.1-.4-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/shubhamtrivedi07/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.3zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.5V9h3.6v11.5z"/></svg>
+          </a>
+          <a href="https://leetcode.com/GreatGabbar/" target="_blank" rel="noopener" aria-label="LeetCode" title="LeetCode">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M16.1 17.6l-2.7 2.6a4.6 4.6 0 0 1-3.3 1.2 4.6 4.6 0 0 1-3.2-1.2l-4.1-4.2a4.7 4.7 0 0 1-1.2-3.3c0-1.3.4-2.4 1.2-3.2L7 5.3 10.5.9c.4-.4.9-.5 1.4-.5.6 0 1 .2 1.4.6.4.3.6.8.6 1.3 0 .6-.2 1-.6 1.4L10 7 6.2 10.9c-.4.4-.6.9-.6 1.5s.2 1.1.6 1.5l4.1 4.2c.4.4.9.6 1.5.6s1.1-.2 1.5-.6l2.7-2.6c.4-.4.9-.6 1.4-.6.6 0 1 .2 1.4.6.4.4.6.8.6 1.4 0 .5-.2 1-.6 1.3l.7-.6zm5-6.6h-9.9c-.5 0-1 .2-1.3.6-.4.3-.6.8-.6 1.3s.2 1 .6 1.4c.4.3.8.5 1.3.5h9.9c.5 0 1-.2 1.3-.5.4-.4.6-.9.6-1.4s-.2-1-.6-1.3a1.8 1.8 0 0 0-1.3-.6z"/></svg>
+          </a>
+          <a href="mailto:shubham072001@gmail.com" aria-label="Email" title="Email">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6L22 7"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="code-card">
+          <div class="code-dots"><i></i><i></i><i></i></div>
+<pre class="mono"><code><span class="c-key">const</span> <span class="c-var">shubham</span> = {
+  <span class="c-prop">role</span>: <span class="c-str">'Software Engineer'</span>,
+  <span class="c-prop">company</span>: <span class="c-str">'Goldman Sachs'</span>,
+  <span class="c-prop">loves</span>: [<span class="c-str">'systems'</span>, <span class="c-str">'GenAI'</span>, <span class="c-str">'web'</span>],
+  <span class="c-prop">latency</span>: <span class="c-str">'200ms → 7ms'</span>,
+  <span class="c-prop">hireable</span>: <span class="c-key">true</span>,
+};</code></pre>
+        </div>
+      </div>
+      <a class="scroll-hint" href="#about" aria-label="Scroll down"><span></span></a>
+    </section>
+
+    <!-- ============ STATS ============ -->
+    <section class="stats reveal">
+      <div class="stat"><span class="stat-num grad" data-count="28" data-suffix="x">0</span><span class="stat-label">Faster trade booking</span></div>
+      <div class="stat"><span class="stat-num grad" data-count="5" data-suffix="M+">0</span><span class="stat-label">Metrics processed / day</span></div>
+      <div class="stat"><span class="stat-num grad" data-count="40" data-suffix="M">0</span><span class="stat-label">Users on shipped products</span></div>
+      <div class="stat"><span class="stat-num grad" data-count="60" data-suffix="%">0</span><span class="stat-label">Frontend build time saved</span></div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about">
+      <h2 class="section-title reveal"><span class="mono section-index">01.</span> About Me</h2>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            I'm a software engineer who loves working across the stack — from shaving
+            <strong>trade-booking latency from 200ms down to 7ms</strong> at Goldman Sachs, to building
+            <strong>GenAI frameworks that turn text prompts into deployable UIs</strong> at GEP Worldwide.
+          </p>
+          <p>
+            I graduated in Computer Engineering from <strong>Thapar Institute of Engineering and Technology</strong>
+            with a <strong>9.07 GPA</strong>, and I've been shipping products ever since — including portals at
+            Gamezop that serve around <strong>40 million users</strong>.
+          </p>
+          <p>
+            Beyond work, I'm a hackathon regular — winner of <strong>HackOwasp 2.1</strong> and the
+            <strong>Incubative Github Hackathon</strong> — and as Technical Secretary of my college's OWASP
+            chapter, I helped <strong>250+ students</strong> get started in tech.
+          </p>
+        </div>
+        <div class="about-card reveal">
+          <img class="avatar" src="https://avatars.githubusercontent.com/u/63102346?v=4" alt="Shubham Trivedi" />
+          <div class="about-facts mono">
+            <div><span>📍</span> Hyderabad, India</div>
+            <div><span>🎓</span> Thapar Institute · GPA 9.07</div>
+            <div><span>🏆</span> 2x Hackathon Winner</div>
+            <div><span>💼</span> Open to opportunities</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section" id="experience">
+      <h2 class="section-title reveal"><span class="mono section-index">02.</span> Where I've Worked</h2>
+      <div class="timeline">
+
+        <article class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <header class="tl-head">
+              <h3>Software Engineer <span class="tl-company">@ Goldman Sachs</span></h3>
+              <span class="tl-date mono">Jun 2025 — Present</span>
+            </header>
+            <ul>
+              <li>Built a <strong>Kafka + OpenTelemetry pipeline</strong> processing <strong>5M+ trading metrics/day</strong> for internal analytics (BQL, Snowflake), improving system observability.</li>
+              <li>Built an optimized EOD reporting system generating <strong>1M+ reports/day</strong> using batching to reduce DB load.</li>
+              <li>Reduced trade-booking latency from <strong>200ms to 7ms (28x faster)</strong> via backend and query optimizations.</li>
+              <li>Migrated <strong>100+ on-prem trading jobs to Cloud</strong>, cutting infra costs 30% and improving reliability 25%.</li>
+            </ul>
+            <div class="tags"><span>Kafka</span><span>OpenTelemetry</span><span>Snowflake</span><span>Java</span><span>Cloud</span></div>
+          </div>
+        </article>
+
+        <article class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <header class="tl-head">
+              <h3>Software Engineer <span class="tl-company">@ GEP Worldwide</span></h3>
+              <span class="tl-date mono">Jan 2023 — Jun 2025</span>
+            </header>
+            <ul>
+              <li>Led development of a <strong>GenAI-driven UI Plugin framework</strong> that turned text prompts into deployable UIs, reducing frontend build time by <strong>60%</strong>.</li>
+              <li>Built a <strong>GenAI-based Supplier Recommendation System</strong>, boosting supplier search accuracy by <strong>40%</strong>.</li>
+              <li>Handled client onboarding and critical issues, achieving <strong>30% faster</strong> onboarding.</li>
+              <li>Implemented <strong>Cypress</strong> automated testing, cutting manual QA effort by <strong>50%</strong>.</li>
+            </ul>
+            <div class="tags"><span>GenAI</span><span>React</span><span>TypeScript</span><span>Cypress</span><span>Node.js</span></div>
+          </div>
+        </article>
+
+        <article class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <header class="tl-head">
+              <h3>Frontend Developer Intern <span class="tl-company">@ Gamezop</span></h3>
+              <span class="tl-date mono">Apr 2022 — Jan 2023</span>
+            </header>
+            <ul>
+              <li>Developed and deployed the Gamezop admin portal, boosting efficiency by <strong>63%</strong>.</li>
+              <li>Contributed to Quizzop and Skillclash portals — now live with around <strong>40M users</strong>.</li>
+            </ul>
+            <div class="tags"><span>React</span><span>JavaScript</span><span>Redux</span></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section" id="skills">
+      <h2 class="section-title reveal"><span class="mono section-index">03.</span> Skills &amp; Tools</h2>
+      <div class="skills-grid">
+        <div class="skill-group reveal">
+          <h3>💻 Languages</h3>
+          <div class="tags lg"><span>C++</span><span>JavaScript</span><span>TypeScript</span><span>Java</span><span>Go</span><span>.NET</span><span>SQL</span></div>
+        </div>
+        <div class="skill-group reveal">
+          <h3>🎨 Frontend</h3>
+          <div class="tags lg"><span>React</span><span>Next.js</span><span>Angular</span><span>Redux</span><span>Tailwind</span></div>
+        </div>
+        <div class="skill-group reveal">
+          <h3>⚙️ Backend &amp; Data</h3>
+          <div class="tags lg"><span>Node.js</span><span>Kafka</span><span>MongoDB</span><span>PostgreSQL</span><span>DynamoDB</span><span>GenAI</span></div>
+        </div>
+        <div class="skill-group reveal">
+          <h3>☁️ DevOps &amp; Cloud</h3>
+          <div class="tags lg"><span>AWS</span><span>Docker</span><span>Kubernetes</span><span>CI/CD</span><span>GitHub Actions</span><span>OpenTelemetry</span></div>
+        </div>
+        <div class="skill-group reveal">
+          <h3>🧪 Testing</h3>
+          <div class="tags lg"><span>Cypress</span><span>Selenium</span></div>
+        </div>
+        <div class="skill-group reveal">
+          <h3>🛠️ Tools</h3>
+          <div class="tags lg"><span>Git</span><span>Linux</span><span>Postman</span><span>JIRA</span><span>VS Code</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section" id="projects">
+      <h2 class="section-title reveal"><span class="mono section-index">04.</span> Things I've Built</h2>
+      <div class="projects-grid">
+
+        <article class="project-card reveal">
+          <div class="project-top">
+            <span class="project-icon">🛒</span>
+            <div class="project-links">
+              <a href="https://github.com/Greatgabbar" target="_blank" rel="noopener" aria-label="GitHub repo">↗</a>
+            </div>
+          </div>
+          <h3>Pansari</h3>
+          <p>A communication portal connecting shopkeepers and customers for safe, hassle-free grocery shopping during the pandemic — slot booking, stock tracking, and in-store shopping passes.</p>
+          <div class="tags"><span>React</span><span>Tailwind</span><span>Node.js</span></div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-top">
+            <span class="project-icon">🎵</span>
+            <div class="project-links">
+              <a href="https://discord.com/oauth2/authorize?client_id=816994233557844039&scope=bot" target="_blank" rel="noopener" aria-label="Invite bot">↗</a>
+            </div>
+          </div>
+          <h3>HuiHui-Bot</h3>
+          <p>A high-quality Discord music bot built for zero-config integration. Just invite and play — powered by discord-player.</p>
+          <div class="tags"><span>JavaScript</span><span>Discord.js</span><span>discord-player</span></div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-top">
+            <span class="project-icon">📜</span>
+            <div class="project-links">
+              <a href="https://github.com/Greatgabbar/Certificate-Generator" target="_blank" rel="noopener" aria-label="GitHub repo">↗</a>
+            </div>
+          </div>
+          <h3>Certificate Generator</h3>
+          <p>Automated certificate creation tool that bulk-generates personalized certificates — a community favorite on my GitHub.</p>
+          <div class="tags"><span>HTML</span><span>Automation</span></div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-top">
+            <span class="project-icon">🦖</span>
+            <div class="project-links">
+              <a href="https://github.com/Greatgabbar/Chrome-dinosaur-game" target="_blank" rel="noopener" aria-label="GitHub repo">↗</a>
+            </div>
+          </div>
+          <h3>Chrome Dinosaur Game</h3>
+          <p>A TypeScript remake of the classic offline dino runner — easy to play, deployed on Vercel.</p>
+          <div class="tags"><span>TypeScript</span><span>Canvas</span></div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-top">
+            <span class="project-icon">⚖️</span>
+            <div class="project-links">
+              <a href="https://github.com/Greatgabbar/Legal-Court-Ledger" target="_blank" rel="noopener" aria-label="GitHub repo">↗</a>
+            </div>
+          </div>
+          <h3>Legal Court Ledger</h3>
+          <p>A judicial record management system for organizing and tracking court records digitally.</p>
+          <div class="tags"><span>JavaScript</span><span>CSS</span></div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-top">
+            <span class="project-icon">📈</span>
+            <div class="project-links">
+              <a href="https://github.com/Greatgabbar/TimeSeriesPrediction" target="_blank" rel="noopener" aria-label="GitHub repo">↗</a>
+            </div>
+          </div>
+          <h3>Time Series Prediction</h3>
+          <p>Temporal data analysis and forecasting experiments in Jupyter — exploring predictive analytics on real datasets.</p>
+          <div class="tags"><span>Python</span><span>Jupyter</span><span>ML</span></div>
+        </article>
+
+      </div>
+      <div class="center reveal">
+        <a class="btn btn-outline" href="https://github.com/Greatgabbar?tab=repositories" target="_blank" rel="noopener">Explore all 53 repos on GitHub →</a>
+      </div>
+    </section>
+
+    <!-- ============ ACHIEVEMENTS ============ -->
+    <section class="section" id="achievements">
+      <h2 class="section-title reveal"><span class="mono section-index">05.</span> Achievements</h2>
+      <div class="achievements-grid">
+        <div class="ach-card reveal"><span class="ach-icon">🥇</span><h3>Hackathon Winner</h3><p>HackOwasp 2.1 &amp; Incubative Github Hackathon</p></div>
+        <div class="ach-card reveal"><span class="ach-icon">🎯</span><h3>Hackathon Finalist</h3><p>Hack Against Covid, HackTU &amp; Delhi Hacks 2.0</p></div>
+        <div class="ach-card reveal"><span class="ach-icon">🛡️</span><h3>Technical Secretary</h3><p>OWASP Student Chapter — mentored 250+ students into tech</p></div>
+        <div class="ach-card reveal"><span class="ach-icon">🎓</span><h3>9.07 GPA</h3><p>BE Computer Engineering, Thapar Institute (2019–2023)</p></div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact">
+      <p class="mono grad reveal contact-kicker">06. What's Next?</p>
+      <h2 class="contact-title reveal">Let's Build Something Together</h2>
+      <p class="contact-blurb reveal">
+        My inbox is always open — whether it's an opportunity, a collaboration,
+        or just to say hi. I'll get back to you!
+      </p>
+      <div class="reveal">
+        <a class="btn btn-primary btn-lg" href="mailto:shubham072001@gmail.com">Say Hello 👋</a>
+      </div>
+      <div class="contact-meta mono reveal">
+        <a href="mailto:shubham072001@gmail.com">shubham072001@gmail.com</a>
+        <span>·</span>
+        <a href="tel:+918178261858">+91 81782 61858</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer mono">
+    <p>Designed &amp; built by Shubham Trivedi</p>
+    <p class="footer-sub">© 2026 · Made with ⚡ and too much coffee</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

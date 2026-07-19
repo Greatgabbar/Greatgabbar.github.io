@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(pip install *)",
+      "Bash(py --version)",
+      "Bash(python \"C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--Portfolio\\\\2c0a4501-8ed6-46cd-bd58-b9c4b4880e04\\\\scratchpad\\\\pdfextract.py\")",
+      "Bash(git --version)",
+      "Bash(git config *)",
+      "Bash(gh auth *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'Portfolio: SHBM Terminal + SHBM-OS + Classic *)"
+    ]
+  }
+}
