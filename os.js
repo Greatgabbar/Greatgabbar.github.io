@@ -18,8 +18,37 @@ loginForm.addEventListener('submit', (e) => {
   e.preventDefault();
   login.classList.add('done');
   setTimeout(() => login.remove(), 600);
+  playChime([523, 659, 784]);   // startup chime (user gesture unlocks audio)
   openWin('win-about');
   setTimeout(() => toast('✅', 'Signed in as guest', 'Any password works. We don\'t gatekeep here.'), 900);
+});
+
+/* ---------- SOUNDS (Web Audio, no files) ---------- */
+let soundOn = true, audioCtx = null;
+function playChime(freqs, dur = 0.14, gap = 0.09) {
+  if (!soundOn) return;
+  try {
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    freqs.forEach((f, i) => {
+      const osc = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      osc.frequency.value = f;
+      osc.type = 'sine';
+      const t0 = audioCtx.currentTime + i * gap;
+      g.gain.setValueAtTime(0.001, t0);
+      g.gain.exponentialRampToValueAtTime(0.09, t0 + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
+      osc.connect(g).connect(audioCtx.destination);
+      osc.start(t0);
+      osc.stop(t0 + dur + 0.05);
+    });
+  } catch (e) { /* audio unavailable — stay silent */ }
+}
+const soundToggle = document.getElementById('soundToggle');
+soundToggle.addEventListener('click', () => {
+  soundOn = !soundOn;
+  soundToggle.textContent = soundOn ? '🔊' : '🔇';
+  if (soundOn) playChime([659]);
 });
 
 /* ---------- WINDOW MANAGER ---------- */
@@ -50,7 +79,8 @@ function openWin(id) {
 }
 
 function closeWin(win) {
-  win.classList.remove('open', 'focus');
+  win.classList.remove('open', 'focus', 'max');
+  win.style.display = '';   // clear inline display so CSS can hide it
   if (win.id === 'win-snake') snakePause();
   syncTaskbar();
 }
@@ -130,15 +160,19 @@ function toast(ico, title, msg, ms = 5200) {
 }
 
 const unlocked = new Set();
-const TOTAL_ACH = 5;
+const TOTAL_ACH = 6;   // 5 findable + 1 secret (konami)
 const trophiesEl = document.getElementById('trophies');
 function unlock(key, title, msg) {
   if (unlocked.has(key)) return;
   unlocked.add(key);
   trophiesEl.textContent = `🏆 ${unlocked.size}/${TOTAL_ACH}`;
+  playChime([880, 1175]);
   toast('🏆', `Achievement: ${title}`, msg);
   if (unlocked.size === TOTAL_ACH) {
-    setTimeout(() => toast('👑', 'COMPLETIONIST', 'You explored everything. Shubham would review your PR any day.'), 1200);
+    setTimeout(() => {
+      toast('👑', 'COMPLETIONIST', 'You found everything — even the secret. Shubham would review your PR any day.');
+      confetti();
+    }, 1200);
   }
 }
 
@@ -243,7 +277,7 @@ const NEOFETCH = `<span class="t-cyan">   _____ __ ______  __  ___
 const OPEN_TARGETS = {
   about: 'win-about', resume: 'win-resume', experience: 'win-exp',
   projects: 'win-projects', skills: 'win-skills', contact: 'win-contact',
-  snake: 'win-snake', trading: 'win-trading', browser: 'win-browser',
+  snake: 'win-snake', trading: 'win-trading', pc: 'win-aboutpc',
   bin: 'win-recycle',
 };
 
@@ -489,7 +523,8 @@ const PAL_ACTIONS = [
   ['✉️', 'Contact', 'mail', () => openWin('win-contact')],
   ['💻', 'Terminal', 'cmd.exe', () => openWin('win-terminal')],
   ['📈', 'Trading Terminal', 'markets app', () => openWin('win-trading')],
-  ['🌐', 'Browser', 'classic site', () => openWin('win-browser')],
+  ['🖥️', 'About This PC', 'system properties', () => openWin('win-aboutpc')],
+  ['🎨', 'Classic View', 'external ↗', () => window.open('classic.html', '_blank')],
   ['🐍', 'Snake', 'game', () => openWin('win-snake')],
   ['🗑️', 'Recycle Bin', 'the past', () => openWin('win-recycle')],
   ['🖼️', 'Change Wallpaper', 'cycle themes', () => cycleWallpaper()],
@@ -666,6 +701,48 @@ document.getElementById('rebootBtn').addEventListener('click', () => {
 document.getElementById('mobileDismiss').addEventListener('click', () => {
   document.getElementById('mobileBanner').remove();
 });
+
+/* ---------- GITHUB LIVE WIDGET ---------- */
+fetch('https://api.github.com/users/Greatgabbar')
+  .then(r => r.ok ? r.json() : Promise.reject())
+  .then(u => {
+    document.getElementById('ghStats').textContent =
+      `${u.public_repos} repos · ${u.followers} followers`;
+    document.getElementById('ghWidget').hidden = false;
+  })
+  .catch(() => { /* offline or rate-limited — widget stays hidden */ });
+
+/* ---------- KONAMI CODE (secret achievement) ---------- */
+const KONAMI = ['arrowup','arrowup','arrowdown','arrowdown','arrowleft','arrowright','arrowleft','arrowright','b','a'];
+let konamiPos = 0;
+document.addEventListener('keydown', (e) => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  konamiPos = e.key.toLowerCase() === KONAMI[konamiPos] ? konamiPos + 1 : 0;
+  if (konamiPos === KONAMI.length) {
+    konamiPos = 0;
+    confetti();
+    playChime([523, 659, 784, 1047]);
+    unlock('konami', 'Old School', '↑↑↓↓←→←→BA — you absolute legend.');
+  }
+});
+
+/* ---------- CONFETTI ---------- */
+function confetti() {
+  const wrap = document.createElement('div');
+  wrap.className = 'confetti';
+  const EMOJI = ['🎉', '⚡', '☕', '📈', '🏆', '💾'];
+  for (let i = 0; i < 50; i++) {
+    const s = document.createElement('span');
+    s.textContent = EMOJI[Math.floor(Math.random() * EMOJI.length)];
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.animationDuration = 2 + Math.random() * 2 + 's';
+    s.style.animationDelay = Math.random() * 0.8 + 's';
+    s.style.fontSize = 14 + Math.random() * 16 + 'px';
+    wrap.appendChild(s);
+  }
+  document.body.appendChild(wrap);
+  setTimeout(() => wrap.remove(), 5000);
+}
 
 /* ---------- CLOCK ---------- */
 const osClock = document.getElementById('osClock');

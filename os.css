@@ -311,7 +311,7 @@ body::before {
 
 /* ============ TOASTS ============ */
 .toasts {
-  position: absolute; top: 18px; right: 18px; z-index: 150;
+  position: absolute; top: 96px; right: 18px; z-index: 150;
   display: flex; flex-direction: column; gap: 10px;
   pointer-events: none;
 }
@@ -478,21 +478,49 @@ body::before {
   transition: 0.15s;
 }
 .win-action:hover { background: rgba(79, 216, 255, 0.15); }
-.browser-chrome {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px 12px;
-  background: rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid var(--border);
-  flex-shrink: 0;
+/* ============ ABOUT THIS PC ============ */
+.aboutpc { text-align: center; }
+.pc-logo { font-size: 52px; margin: 6px 0 2px; }
+.pc-name { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+.aboutpc .kv { text-align: left; margin-bottom: 14px; }
+.pc-license { font-size: 11px; color: var(--warn); line-height: 1.7; margin-bottom: 12px; }
+.pc-activate { display: inline-block; text-align: center; }
+
+/* ============ GITHUB LIVE WIDGET ============ */
+.gh-widget {
+  position: absolute; top: 18px; right: 18px; z-index: 60;
+  display: flex; gap: 12px; align-items: center;
+  padding: 12px 16px;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border); border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+  transition: transform 0.15s, border-color 0.15s;
 }
-.b-btn { color: var(--dim); font-size: 13px; padding: 0 4px; }
-.b-url {
-  flex: 1; font-size: 11px; color: var(--dim);
-  background: rgba(255,255,255,0.06);
-  border: 1px solid var(--border); border-radius: 999px;
-  padding: 5px 14px;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+.gh-widget:hover { transform: translateY(-2px); border-color: var(--accent); }
+.gh-widget img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--accent); }
+.gh-widget b { display: block; font-size: 12.5px; }
+.gh-widget span { display: block; font-size: 11.5px; color: var(--dim); }
+.gh-widget i { display: block; font-size: 9px; color: var(--ok); font-style: normal; letter-spacing: 0.5px; }
+
+/* ============ CONFETTI ============ */
+.confetti { position: fixed; inset: 0; z-index: 500; pointer-events: none; overflow: hidden; }
+.confetti span {
+  position: absolute; top: -36px;
+  animation: confetti-fall linear forwards;
 }
+@keyframes confetti-fall {
+  to { transform: translateY(115vh) rotate(720deg); opacity: 0.6; }
+}
+
+/* ============ TRAY BUTTON ============ */
+.tray-btn {
+  border: 0; background: none; cursor: pointer;
+  font-size: 13px; padding: 2px 4px; border-radius: 6px;
+  transition: background 0.15s;
+}
+.tray-btn:hover { background: rgba(255,255,255,0.1); }
 
 /* ============ COMMAND PALETTE ============ */
 .palette {
@@ -572,4 +600,5 @@ body::before {
   .desktop-hint { display: none; }
   .clippy { right: 12px; bottom: 76px; }
   .mobile-banner { display: block; }
+  .gh-widget { display: none; }
 }

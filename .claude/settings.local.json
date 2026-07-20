@@ -16,7 +16,8 @@
       "Bash(git remote *)",
       "Bash(git push *)",
       "Bash(cp /d/Portfolio/index.html /d/Portfolio/terminal.html && cp \"/c/Users/Asus/Downloads/Shubham_Resume.pdf\" /d/Portfolio/resume.pdf && ls /d/Portfolio)",
-      "Bash(git commit -m 'Merge everything into SHBM-OS: login screen, resume.pdf viewer, trading terminal & classic as apps, real shell with FS/history/completion, Ctrl+K palette *)"
+      "Bash(git commit -m 'Merge everything into SHBM-OS: login screen, resume.pdf viewer, trading terminal & classic as apps, real shell with FS/history/completion, Ctrl+K palette *)",
+      "Bash(git commit -m 'Fix window close bug; remove browser.exe; add sounds, GitHub live widget, About This PC, Konami code + confetti *)"
     ]
   }
 }

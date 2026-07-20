@@ -45,7 +45,6 @@
       <button class="icon" data-open="win-contact"><span>✉️</span>contact.eml</button>
       <button class="icon" data-open="win-terminal"><span>💻</span>cmd.exe</button>
       <button class="icon" data-open="win-trading"><span>📈</span>trading_terminal.exe</button>
-      <button class="icon" data-open="win-browser"><span>🌐</span>browser.exe</button>
       <button class="icon" data-open="win-snake"><span>🐍</span>snake.exe</button>
       <button class="icon" data-open="win-recycle"><span>🗑️</span>recycle bin</button>
       <a class="icon" href="https://github.com/Greatgabbar" target="_blank" rel="noopener"><span>🐙</span>github.lnk</a>
@@ -74,18 +73,26 @@
       <iframe class="app-frame" src="" data-src="terminal.html" title="SHBM Trading Terminal"></iframe>
     </section>
 
-    <!-- ===== WINDOW: BROWSER APP ===== -->
-    <section class="window tall" id="win-browser" data-title="🌐 browser" style="--x: 8%; --y: 7%; --w: 980px">
+    <!-- ===== WINDOW: ABOUT THIS PC ===== -->
+    <section class="window" id="win-aboutpc" data-title="🖥️ about this pc" style="--x: 33%; --y: 18%; --w: 430px">
       <header class="win-head">
         <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max" data-max></i></div>
-        <span class="win-title">🌐 browser.exe — SHBM Web</span>
-        <a class="win-action" href="classic.html" target="_blank" rel="noopener">⛶ fullscreen</a>
+        <span class="win-title">🖥️ System Properties</span>
       </header>
-      <div class="browser-chrome">
-        <span class="b-btn">←</span><span class="b-btn">→</span><span class="b-btn">⟳</span>
-        <span class="b-url mono">🔒 shbm-web://shubham-trivedi.portfolio/classic</span>
+      <div class="win-body pad aboutpc">
+        <div class="pc-logo">🖥️</div>
+        <p class="pc-name">SHBM-OS <span class="dim">v10 · build 2026.07</span></p>
+        <table class="kv">
+          <tr><td>Processor</td><td>Brain @ 9.07 GHz (Thapar edition)</td></tr>
+          <tr><td>Memory</td><td>40M users served</td></tr>
+          <tr><td>Graphics</td><td>Imagination RTX</td></tr>
+          <tr><td>Storage</td><td>53 public repos</td></tr>
+          <tr><td>Network</td><td>Kafka @ 5M packets/day</td></tr>
+          <tr><td>Uptime</td><td>7 years, zero burnouts</td></tr>
+        </table>
+        <p class="pc-license mono">⚠ SHBM-OS is unregistered.<br />Hire the developer to activate.</p>
+        <a class="send-btn pc-activate" href="mailto:shubham072001@gmail.com?subject=Activating%20SHBM-OS%20%F0%9F%94%91">🔑 ACTIVATE</a>
       </div>
-      <iframe class="app-frame" src="" data-src="classic.html" title="Classic portfolio"></iframe>
     </section>
 
     <!-- ===== WINDOW: ABOUT ===== -->
@@ -290,9 +297,10 @@ We saw your OS-shaped portfolio and we'd like to talk...</textarea>
       <button class="sm-item" data-open="win-contact">✉️ Contact</button>
       <button class="sm-item" data-open="win-terminal">💻 Terminal</button>
       <button class="sm-item" data-open="win-trading">📈 Trading Terminal</button>
-      <button class="sm-item" data-open="win-browser">🌐 Browser</button>
       <button class="sm-item" data-open="win-snake">🐍 Snake</button>
+      <button class="sm-item" data-open="win-aboutpc">🖥️ About This PC</button>
       <hr />
+      <a class="sm-item" href="classic.html" target="_blank" rel="noopener">🎨 Classic view ↗</a>
       <button class="sm-item" id="shutdownBtn">⏻ Shut Down</button>
     </div>
 
@@ -301,7 +309,12 @@ We saw your OS-shaped portfolio and we'd like to talk...</textarea>
       <button class="start" id="startBtn"><span>🖥️</span> START</button>
       <button class="tb-search" id="tbSearch" title="Search (Ctrl+K)">🔍</button>
       <div class="tasks" id="tasks"></div>
-      <div class="tray mono"><span id="trophies" title="achievements unlocked">🏆 0/5</span><span id="osClock">--:--</span></div>
+      <div class="tray mono">
+        <button id="soundToggle" class="tray-btn" title="toggle sounds">🔊</button>
+        <span title="coffee level">☕ 99%</span>
+        <span id="trophies" title="achievements unlocked">🏆 0/6</span>
+        <span id="osClock">--:--</span>
+      </div>
     </footer>
 
     <!-- ===== SHUTDOWN OVERLAY ===== -->
@@ -313,6 +326,16 @@ We saw your OS-shaped portfolio and we'd like to talk...</textarea>
 
     <!-- ===== SCREENSAVER ===== -->
     <canvas class="screensaver" id="screensaver" hidden></canvas>
+
+    <!-- ===== GITHUB LIVE WIDGET ===== -->
+    <a class="gh-widget" id="ghWidget" href="https://github.com/Greatgabbar" target="_blank" rel="noopener" hidden>
+      <img id="ghAva" src="https://avatars.githubusercontent.com/u/63102346?v=4" alt="" />
+      <div>
+        <b>@Greatgabbar</b>
+        <span id="ghStats">loading…</span>
+        <i>⦿ live from GitHub API</i>
+      </div>
+    </a>
 
     <!-- ===== MOBILE SUGGESTION ===== -->
     <div class="mobile-banner" id="mobileBanner">
