@@ -1,14 +1,26 @@
 /* ============================================================
-   🖥️ SHBM-OS — window manager, apps & extraordinary features
+   🖥️ SHBM-OS v10 — window manager, real-ish shell & apps
    ============================================================ */
 
-/* ---------- BOOT SPLASH ---------- */
+/* ---------- BOOT → LOGIN → DESKTOP ---------- */
 const splash = document.getElementById('splash');
+const login = document.getElementById('login');
+const loginForm = document.getElementById('loginForm');
+
 setTimeout(() => {
   splash.classList.add('done');
   setTimeout(() => splash.remove(), 700);
-  openWin('win-about'); // greet visitors with the About window
-}, 1600);
+  login.hidden = false;
+  setTimeout(() => document.getElementById('loginPass').focus(), 150);
+}, 1400);
+
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  login.classList.add('done');
+  setTimeout(() => login.remove(), 600);
+  openWin('win-about');
+  setTimeout(() => toast('✅', 'Signed in as guest', 'Any password works. We don\'t gatekeep here.'), 900);
+});
 
 /* ---------- WINDOW MANAGER ---------- */
 const windows = [...document.querySelectorAll('.window')];
@@ -25,6 +37,9 @@ function focusWin(win) {
 function openWin(id) {
   const win = document.getElementById(id);
   if (!win) return;
+  // lazy-load iframe apps on first open
+  const frame = win.querySelector('.app-frame');
+  if (frame && !frame.getAttribute('src')) frame.src = frame.dataset.src;
   win.classList.add('open');
   win.style.display = 'flex';
   focusWin(win);
@@ -60,7 +75,6 @@ function syncTaskbar() {
   });
 }
 
-// openers (desktop icons + start menu items)
 document.querySelectorAll('[data-open]').forEach(el =>
   el.addEventListener('click', () => {
     openWin(el.dataset.open);
@@ -68,7 +82,6 @@ document.querySelectorAll('[data-open]').forEach(el =>
   })
 );
 
-// per-window controls, focus, drag, maximize
 windows.forEach(win => {
   win.addEventListener('pointerdown', () => focusWin(win));
   win.querySelector('[data-close]').addEventListener('click', () => closeWin(win));
@@ -84,7 +97,7 @@ windows.forEach(win => {
 
   const head = win.querySelector('.win-head');
   head.addEventListener('pointerdown', (e) => {
-    if (e.target.closest('.lights') || win.classList.contains('max')) return;
+    if (e.target.closest('.lights, .win-action') || win.classList.contains('max')) return;
     e.preventDefault();
     const rect = win.getBoundingClientRect();
     const offX = e.clientX - rect.left;
@@ -129,16 +142,13 @@ function unlock(key, title, msg) {
   }
 }
 
-// explorer achievement — open 5 different windows
 const openedSet = new Set();
 function trackExplorer(id) {
   openedSet.add(id);
   if (openedSet.size >= 5) unlock('explorer', 'Explorer', 'Opened 5 apps. Curiosity: confirmed.');
 }
 
-// welcome + fake update toasts
-setTimeout(() => toast('✅', 'System ready', 'All career processes running normally.'), 3200);
-setTimeout(() => toast('⬆️', 'Update available', 'shubham_v10 ships when you hire him.'), 26000);
+setTimeout(() => toast('⬆️', 'Update available', 'shubham_v11 ships when you hire him.'), 32000);
 
 /* ---------- TASK MANAGER (SKILLS) ---------- */
 const PROCS = [
@@ -175,10 +185,42 @@ document.getElementById('sendMail').addEventListener('click', () => {
   window.location.href = `mailto:shubham072001@gmail.com?subject=${subject}&body=${body}`;
 });
 
-/* ---------- TERMINAL APP (CMD.EXE) ---------- */
+/* ============================================================
+   💻 CMD.EXE — a shell with a filesystem, history & completion
+   ============================================================ */
 const termOut = document.getElementById('termOut');
 const termIn = document.getElementById('termIn');
+const termPrompt = document.getElementById('termPrompt');
 document.getElementById('termScreen').addEventListener('click', () => termIn.focus());
+
+/* --- fake filesystem (matches what File Explorer shows) --- */
+const FS = {
+  '~': {
+    'about_me.txt': `SHUBHAM TRIVEDI — Software Engineer @ Goldman Sachs, Hyderabad.
+Kafka pipelines @ 5M metrics/day · 28x latency win · GenAI frameworks.
+Thapar '23, GPA 9.07. Hackathon winner x2. Status: hireable.`,
+    'experience.log': `[2025-06→now]  GOLDMAN SACHS — SWE. 5M metrics/day, 1M reports/day, 200ms→7ms.
+[2023-01→25]   GEP WORLDWIDE — SWE. GenAI prompt→UI (−60% build), recsys +40%.
+[2022-04→23]   GAMEZOP — intern. Admin portal +63%, portals @ 40M users.
+[2019→2023]    THAPAR — BE Computer Engg, GPA 9.07.`,
+    'resume.pdf': '[binary — 47.9 KB] use: open resume',
+    'contact.eml': 'to: shubham072001@gmail.com · tel: +91 81782 61858 · use: open contact',
+    'skills.sys': '[system file] use: top',
+    'projects': {
+      'pansari': 'https://github.com/Greatgabbar',
+      'huihui-bot': 'https://discord.com/oauth2/authorize?client_id=816994233557844039&scope=bot',
+      'cert-generator': 'https://github.com/Greatgabbar/Certificate-Generator',
+      'dino-game': 'https://github.com/Greatgabbar/Chrome-dinosaur-game',
+      'court-ledger': 'https://github.com/Greatgabbar/Legal-Court-Ledger',
+      'ts-prediction': 'https://github.com/Greatgabbar/TimeSeriesPrediction',
+      'gophercises': 'https://github.com/Greatgabbar/gophercises',
+      'web-scraper': 'https://github.com/Greatgabbar/Web-scrapper',
+    },
+  },
+};
+let cwd = ['~'];
+const cwdDir = () => cwd.slice(1).reduce((d, p) => d[p], FS['~']);
+const cwdPath = () => cwd.join('/');
 
 const NEOFETCH = `<span class="t-cyan">   _____ __ ______  __  ___
   / ___// // / __ )/  |/  /
@@ -187,7 +229,7 @@ const NEOFETCH = `<span class="t-cyan">   _____ __ ______  __  ___
 /____/_//_/_____/_/  /_/</span>
  <span class="t-warn">shubham</span>@<span class="t-warn">shbm-os</span>
  ─────────────────────────
- OS:       SHBM-OS v9.07
+ OS:       SHBM-OS v10 (merged edition)
  Kernel:   caffeine-5.4-stable
  Uptime:   7 years in tech
  Shell:    recruiter-sh
@@ -198,21 +240,59 @@ const NEOFETCH = `<span class="t-cyan">   _____ __ ______  __  ___
  Packages: react, kafka, genai, k8s +16
  Theme:    Hireable Dark`;
 
+const OPEN_TARGETS = {
+  about: 'win-about', resume: 'win-resume', experience: 'win-exp',
+  projects: 'win-projects', skills: 'win-skills', contact: 'win-contact',
+  snake: 'win-snake', trading: 'win-trading', browser: 'win-browser',
+  bin: 'win-recycle',
+};
+
 const TERM_CMDS = {
-  help: () => `commands: about · experience · projects · skills · contact
-          open <app> · neofetch · snake · matrix · whoami
-          hire · sudo hire · ls · clear · exit`,
+  help: () => `filesystem:  ls · cd <dir> · cd .. · cat <file> · pwd
+apps:        open <about|resume|experience|projects|skills|contact|trading|browser|snake>
+             top (task manager) · snake · matrix (screensaver)
+info:        neofetch · whoami · date · history · echo <text>
+career:      hire · sudo hire
+misc:        clear · exit · and a few undocumented ones`,
   neofetch: () => NEOFETCH,
-  ls: () => `about_me.txt  experience.log  projects/  skills.sys
-contact.eml  snake.exe  recycle_bin/  no_bugs_here/`,
-  whoami: () => 'recruiter — clearance FULL — bias hopefully favorable',
-  about: () => { openWin('win-about'); return 'opening about_me.txt...'; },
-  experience: () => { openWin('win-exp'); return 'tailing experience.log...'; },
-  projects: () => { openWin('win-projects'); return 'mounting projects/...'; },
-  skills: () => { openWin('win-skills'); return 'launching task manager...'; },
-  contact: () => { openWin('win-contact'); return 'composing mail...'; },
+  pwd: () => cwdPath(),
+  ls: () => {
+    const d = cwdDir();
+    return Object.keys(d).map(k => typeof d[k] === 'object' ? k + '/' : k).join('   ');
+  },
+  cd: (arg) => {
+    if (!arg || arg === '~') { cwd = ['~']; return null; }
+    if (arg === '..') { if (cwd.length > 1) cwd.pop(); return null; }
+    const clean = arg.replace(/\/$/, '');
+    const d = cwdDir();
+    if (typeof d[clean] === 'object') { cwd.push(clean); return null; }
+    return `cd: no such directory: ${arg}`;
+  },
+  cat: (arg) => {
+    if (!arg) return 'cat: which file?';
+    const d = cwdDir();
+    const v = d[arg];
+    if (v === undefined) return `cat: ${arg}: no such file`;
+    if (typeof v === 'object') return `cat: ${arg}: is a directory`;
+    if (v.startsWith('http')) return `${arg} → ${v}\n(use: open ${arg})`;
+    return v;
+  },
+  open: (arg) => {
+    if (!arg) return 'open: what? try: open resume';
+    const key = arg.replace(/\.\w+$/, '').replace(/\/$/, '');
+    if (OPEN_TARGETS[key]) { openWin(OPEN_TARGETS[key]); return `opening ${arg}...`; }
+    const d = cwdDir();
+    const v = d[key] || (FS['~'].projects || {})[key];
+    if (typeof v === 'string' && v.startsWith('http')) { window.open(v, '_blank'); return `launching ${key} ↗`; }
+    return `open: nothing called '${arg}' here`;
+  },
+  top: () => { openWin('win-skills'); return 'launching task manager...'; },
   snake: () => { openWin('win-snake'); return 'ssssssure. launching snake.exe'; },
   matrix: () => { startSaver(); return 'entering the matrix...'; },
+  whoami: () => 'recruiter — clearance FULL — bias hopefully favorable',
+  date: () => new Date().toString(),
+  echo: (a) => a || '',
+  history: () => termHistory.map((h, i) => ` ${i + 1}  ${h}`).join('\n') || '(empty)',
   hire: () => {
     location.href = 'mailto:shubham072001@gmail.com?subject=BUY%20ORDER%3A%20SHBM';
     return 'opening mail client... good choice.';
@@ -223,27 +303,68 @@ contact.eml  snake.exe  recycle_bin/  no_bugs_here/`,
   coffee: () => '☕ brewing... productivity +47%',
   clear: () => { termOut.innerHTML = ''; return null; },
   exit: () => { closeWin(document.getElementById('win-terminal')); return null; },
-  gpa: () => '9.07/10 — also this OS version number. everything connects.',
+  gpa: () => '9.07/10 — also this CPU\'s clock speed. everything connects.',
   vim: () => ':q! — nice try. nobody escapes vim that easily.',
   rm: () => 'rm: permission denied. this career is write-protected.',
 };
 
-function termEcho(cmdline, result) {
-  termOut.innerHTML += `<span class="t-dim">C:\\Users\\recruiter&gt; ${cmdline}</span>\n`;
-  if (result != null) termOut.innerHTML += result + '\n';
+const termHistory = [];
+let histIdx = -1;
+
+function termEcho(cmdline, result, promptPath) {
+  termOut.innerHTML += `<span class="t-dim">${promptPath || cwdPath()}$ ${cmdline}</span>\n`;
+  if (result != null && result !== '') termOut.innerHTML += result + '\n';
   termOut.parentElement.scrollTop = termOut.parentElement.scrollHeight;
+  termPrompt.textContent = cwdPath() + '$';
 }
 
 termIn.addEventListener('keydown', (e) => {
+  /* history ↑ ↓ */
+  if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (termHistory.length && histIdx < termHistory.length - 1) {
+      histIdx++;
+      termIn.value = termHistory[termHistory.length - 1 - histIdx];
+    }
+    return;
+  }
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (histIdx > 0) {
+      histIdx--;
+      termIn.value = termHistory[termHistory.length - 1 - histIdx];
+    } else { histIdx = -1; termIn.value = ''; }
+    return;
+  }
+  /* tab completion */
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    const parts = termIn.value.split(/\s+/);
+    const last = parts[parts.length - 1];
+    if (!last) return;
+    const pool = parts.length === 1
+      ? Object.keys(TERM_CMDS)
+      : [...Object.keys(cwdDir()), ...Object.keys(OPEN_TARGETS)];
+    const hits = pool.filter(p => p.startsWith(last.toLowerCase()));
+    if (hits.length === 1) {
+      parts[parts.length - 1] = hits[0];
+      termIn.value = parts.join(' ');
+    } else if (hits.length > 1) {
+      termEcho(termIn.value, hits.join('   '));
+    }
+    return;
+  }
   if (e.key !== 'Enter') return;
   const raw = termIn.value.trim();
   termIn.value = '';
+  histIdx = -1;
   if (!raw) return;
+  termHistory.push(raw);
   unlock('hacker', 'Hacker', 'Used the terminal. Respect.');
-  let [cmd, ...rest] = raw.toLowerCase().split(/\s+/);
-  if (cmd === 'open' && rest.length) { cmd = rest[0]; rest = []; }
-  const fn = TERM_CMDS[cmd];
-  termEcho(raw, fn ? fn(rest.join(' ')) : `'${cmd}' is not recognized. but Shubham learns fast — try 'help'.`);
+  const [cmd, ...rest] = raw.split(/\s+/);
+  const fn = TERM_CMDS[cmd.toLowerCase()];
+  const promptPath = cwdPath();
+  termEcho(raw, fn ? fn(rest.join(' ')) : `'${cmd}' is not recognized. but Shubham learns fast — try 'help'.`, promptPath);
 });
 
 /* ---------- SNAKE.EXE ---------- */
@@ -296,16 +417,13 @@ function snakeTick() {
 
 function snakeDraw() {
   sCtx.clearRect(0, 0, 320, 320);
-  // grid
   sCtx.strokeStyle = 'rgba(139,124,255,0.07)';
   for (let i = 1; i < GRID; i++) {
     sCtx.beginPath(); sCtx.moveTo(i * CELL, 0); sCtx.lineTo(i * CELL, 320); sCtx.stroke();
     sCtx.beginPath(); sCtx.moveTo(0, i * CELL); sCtx.lineTo(320, i * CELL); sCtx.stroke();
   }
-  // food = coffee
   sCtx.font = '13px serif';
   sCtx.fillText('☕', food.x * CELL + 1, food.y * CELL + 13);
-  // snake
   snake.forEach((s, i) => {
     const t = i / snake.length;
     sCtx.fillStyle = i === 0 ? '#4fd8ff' : `rgba(139, 124, 255, ${1 - t * 0.6})`;
@@ -356,6 +474,78 @@ document.addEventListener('keydown', (e) => {
   if (k === 'r' && sDead) { snakeReset(); snakeDraw(); }
 });
 
+/* ---------- COMMAND PALETTE (CTRL+K) ---------- */
+const palette = document.getElementById('palette');
+const paletteIn = document.getElementById('paletteIn');
+const paletteList = document.getElementById('paletteList');
+let palSel = 0;
+
+const PAL_ACTIONS = [
+  ['📕', 'Resume', 'open pdf', () => openWin('win-resume')],
+  ['📄', 'About Me', 'notepad', () => openWin('win-about')],
+  ['🗒️', 'Experience', 'log viewer', () => openWin('win-exp')],
+  ['📁', 'Projects', 'file explorer', () => openWin('win-projects')],
+  ['📊', 'Skills', 'task manager', () => openWin('win-skills')],
+  ['✉️', 'Contact', 'mail', () => openWin('win-contact')],
+  ['💻', 'Terminal', 'cmd.exe', () => openWin('win-terminal')],
+  ['📈', 'Trading Terminal', 'markets app', () => openWin('win-trading')],
+  ['🌐', 'Browser', 'classic site', () => openWin('win-browser')],
+  ['🐍', 'Snake', 'game', () => openWin('win-snake')],
+  ['🗑️', 'Recycle Bin', 'the past', () => openWin('win-recycle')],
+  ['🖼️', 'Change Wallpaper', 'cycle themes', () => cycleWallpaper()],
+  ['🌧️', 'Screensaver', 'matrix rain', () => startSaver()],
+  ['🐙', 'GitHub', 'external ↗', () => window.open('https://github.com/Greatgabbar', '_blank')],
+  ['💼', 'LinkedIn', 'external ↗', () => window.open('https://www.linkedin.com/in/shubhamtrivedi07/', '_blank')],
+  ['🤝', 'Hire Shubham', 'send email', () => { location.href = 'mailto:shubham072001@gmail.com?subject=Found%20you%20via%20Ctrl%2BK'; }],
+];
+
+function palRender() {
+  const q = paletteIn.value.toLowerCase();
+  const hits = PAL_ACTIONS.filter(([, label, sub]) =>
+    label.toLowerCase().includes(q) || sub.toLowerCase().includes(q));
+  palSel = Math.min(palSel, Math.max(0, hits.length - 1));
+  paletteList.innerHTML = hits.map(([ico, label, sub], i) =>
+    `<button class="pal-item${i === palSel ? ' sel' : ''}" data-i="${PAL_ACTIONS.findIndex(a => a[1] === label)}">
+       <span>${ico}</span> ${label} <small>${sub}</small>
+     </button>`).join('') || '<p class="palette-hint mono">no results — he\'s good, but not that good</p>';
+}
+function palOpen() {
+  palette.hidden = false;
+  paletteIn.value = '';
+  palSel = 0;
+  palRender();
+  setTimeout(() => paletteIn.focus(), 40);
+}
+function palClose() { palette.hidden = true; }
+function palRun() {
+  const sel = paletteList.querySelector('.pal-item.sel');
+  if (!sel) return;
+  palClose();
+  PAL_ACTIONS[+sel.dataset.i][3]();
+}
+paletteIn.addEventListener('input', () => { palSel = 0; palRender(); });
+paletteIn.addEventListener('keydown', (e) => {
+  const count = paletteList.querySelectorAll('.pal-item').length;
+  if (e.key === 'ArrowDown') { e.preventDefault(); palSel = (palSel + 1) % count; palRender(); }
+  if (e.key === 'ArrowUp') { e.preventDefault(); palSel = (palSel - 1 + count) % count; palRender(); }
+  if (e.key === 'Enter') palRun();
+  if (e.key === 'Escape') palClose();
+});
+paletteList.addEventListener('click', (e) => {
+  const item = e.target.closest('.pal-item');
+  if (!item) return;
+  palClose();
+  PAL_ACTIONS[+item.dataset.i][3]();
+});
+palette.addEventListener('click', (e) => { if (e.target === palette) palClose(); });
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+    e.preventDefault();
+    palette.hidden ? palOpen() : palClose();
+  }
+});
+document.getElementById('tbSearch').addEventListener('click', palOpen);
+
 /* ---------- CLIPPY (HIRY 📎) ---------- */
 const clippy = document.getElementById('clippy');
 const clippyText = document.getElementById('clippyText');
@@ -364,16 +554,17 @@ const CLIPPY_LINES = [
   'Fun fact: this entire OS is vanilla JavaScript. No frameworks were harmed.',
   'Tip: he reduced trade latency 28x. Your hiring process could be next.',
   'I found 0 red flags and 1 strong hire. Want me to draft the offer?',
+  'Press Ctrl+K. All good engineers love a command palette.',
 ];
 let clippyIdx = 0;
-setTimeout(() => { clippy.hidden = false; }, 12000);
+setTimeout(() => { clippy.hidden = false; }, 14000);
 document.getElementById('clippyClose').addEventListener('click', () => { clippy.hidden = true; });
 document.getElementById('clippyChar').addEventListener('click', () => {
   clippyIdx = (clippyIdx + 1) % CLIPPY_LINES.length;
   clippyText.textContent = CLIPPY_LINES[clippyIdx];
   unlock('friend', 'Made a Friend', 'You clicked Hiry. He gets lonely.');
 });
-document.getElementById('clippyHighlights').addEventListener('click', () => openWin('win-exp'));
+document.getElementById('clippyHighlights').addEventListener('click', () => openWin('win-resume'));
 document.getElementById('clippyHire').addEventListener('click', () => {
   location.href = 'mailto:shubham072001@gmail.com?subject=Hiry%20sent%20me%20%F0%9F%93%8E';
 });
@@ -381,12 +572,17 @@ document.getElementById('clippyHire').addEventListener('click', () => {
 /* ---------- CONTEXT MENU ---------- */
 const ctxmenu = document.getElementById('ctxmenu');
 let wallIdx = 1;
+function cycleWallpaper() {
+  wallIdx = (wallIdx % 3) + 1;
+  document.body.dataset.wall = wallIdx;
+  toast('🖼️', 'Wallpaper changed', `Theme ${wallIdx}/3 applied. Interior design: also a skill.`);
+}
 document.getElementById('desktop').addEventListener('contextmenu', (e) => {
-  if (e.target.closest('.window, .taskbar, .startmenu, .clippy')) return;
+  if (e.target.closest('.window, .taskbar, .startmenu, .clippy, .palette')) return;
   e.preventDefault();
   ctxmenu.hidden = false;
   ctxmenu.style.left = Math.min(e.clientX, innerWidth - 220) + 'px';
-  ctxmenu.style.top = Math.min(e.clientY, innerHeight - 240) + 'px';
+  ctxmenu.style.top = Math.min(e.clientY, innerHeight - 260) + 'px';
 });
 document.addEventListener('click', (e) => {
   if (!e.target.closest('.ctxmenu')) ctxmenu.hidden = true;
@@ -394,12 +590,9 @@ document.addEventListener('click', (e) => {
 ctxmenu.addEventListener('click', (e) => {
   const act = e.target.dataset.ctx;
   ctxmenu.hidden = true;
+  if (act === 'palette') palOpen();
   if (act === 'terminal') openWin('win-terminal');
-  if (act === 'wallpaper') {
-    wallIdx = (wallIdx % 3) + 1;
-    document.body.dataset.wall = wallIdx;
-    toast('🖼️', 'Wallpaper changed', `Theme ${wallIdx}/3 applied. Interior design: also a skill.`);
-  }
+  if (act === 'wallpaper') cycleWallpaper();
   if (act === 'screensaver') startSaver();
   if (act === 'refresh') toast('🔄', 'Desktop refreshed', 'Still fast. Still hireable.');
   if (act === 'sort') toast('🌀', 'Sorted by vibes', 'The vibes were already immaculate.');
@@ -441,10 +634,9 @@ saver.addEventListener('pointerdown', stopSaver);
 saver.addEventListener('pointermove', () => { if (!saver.hidden) stopSaver(); });
 document.addEventListener('keydown', () => stopSaver());
 
-// idle detection → screensaver after 75s
 function resetIdle() {
   clearTimeout(idleTimer);
-  idleTimer = setTimeout(() => { if (saver.hidden) startSaver(); }, 75000);
+  idleTimer = setTimeout(() => { if (saver.hidden) startSaver(); }, 90000);
 }
 ['pointermove', 'pointerdown', 'keydown'].forEach(ev => document.addEventListener(ev, resetIdle));
 resetIdle();
@@ -468,6 +660,11 @@ document.getElementById('shutdownBtn').addEventListener('click', () => {
 });
 document.getElementById('rebootBtn').addEventListener('click', () => {
   shutdown.hidden = true;
+});
+
+/* ---------- MOBILE BANNER ---------- */
+document.getElementById('mobileDismiss').addEventListener('click', () => {
+  document.getElementById('mobileBanner').remove();
 });
 
 /* ---------- CLOCK ---------- */
