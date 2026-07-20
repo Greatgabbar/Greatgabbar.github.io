@@ -478,6 +478,34 @@ body::before {
   transition: 0.15s;
 }
 .win-action:hover { background: rgba(79, 216, 255, 0.15); }
+/* ============ RESUME DOCUMENT ============ */
+.resume-doc { background: #494c52; padding: 22px 16px; }
+.paper {
+  max-width: 620px; margin: 0 auto;
+  background: #ffffff; color: #202124;
+  padding: 36px 40px;
+  border-radius: 3px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  font-size: 12.5px; line-height: 1.6;
+  user-select: text;
+}
+.paper h1 { font-size: 24px; letter-spacing: 0.5px; margin-bottom: 4px; color: #111; }
+.paper h2 {
+  font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
+  color: #5b4bd6; border-bottom: 1.5px solid #e4e2f7;
+  padding-bottom: 3px; margin: 18px 0 9px;
+}
+.paper a { color: #5b4bd6; }
+.paper a:hover { text-decoration: underline; }
+.r-contact { font-size: 11.5px; color: #555; line-height: 1.7; }
+.r-job { margin-bottom: 10px; }
+.r-job header { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; font-size: 12.5px; }
+.r-job header span { color: #777; font-size: 11px; }
+.r-job ul, .r-ach { margin: 4px 0 0 18px; }
+.r-job li, .r-ach li { margin-bottom: 3px; color: #333; }
+.r-skills { color: #333; }
+.paper b { color: #111; }
+
 /* ============ ABOUT THIS PC ============ */
 .aboutpc { text-align: center; }
 .pc-logo { font-size: 52px; margin: 6px 0 2px; }

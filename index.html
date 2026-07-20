@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="os.css" />
+  <link rel="stylesheet" href="os.css?v=11" />
 </head>
 <body>
 
@@ -53,14 +53,83 @@
 
     <p class="desktop-hint">one click opens everything · drag windows by their title bar<br />right-click the desktop · press CTRL+K to search</p>
 
-    <!-- ===== WINDOW: RESUME (PDF VIEWER) ===== -->
-    <section class="window tall" id="win-resume" data-title="📕 resume.pdf" style="--x: 12%; --y: 6%; --w: 760px">
+    <!-- ===== WINDOW: RESUME (DOCUMENT VIEWER) ===== -->
+    <section class="window tall" id="win-resume" data-title="📕 resume.pdf" style="--x: 12%; --y: 4%; --w: 720px">
       <header class="win-head">
         <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max" data-max></i></div>
         <span class="win-title">📕 resume.pdf — Document Viewer</span>
-        <a class="win-action" href="resume.pdf" download="Shubham_Trivedi_Resume.pdf">⬇ download</a>
+        <a class="win-action" href="resume.pdf" download="Shubham_Trivedi_Resume.pdf">⬇ download PDF</a>
       </header>
-      <iframe class="app-frame light" src="" data-src="resume.pdf" title="Resume PDF"></iframe>
+      <div class="win-body resume-doc">
+        <article class="paper">
+          <h1>Shubham Trivedi</h1>
+          <p class="r-contact">
+            Hyderabad, India · <a href="mailto:shubham072001@gmail.com">shubham072001@gmail.com</a> · +91 81782 61858<br />
+            <a href="https://www.linkedin.com/in/shubhamtrivedi07/" target="_blank" rel="noopener">linkedin/shubhamtrivedi07</a> ·
+            <a href="https://github.com/Greatgabbar" target="_blank" rel="noopener">github/Greatgabbar</a> ·
+            <a href="https://leetcode.com/GreatGabbar/" target="_blank" rel="noopener">leetcode/GreatGabbar</a>
+          </p>
+
+          <h2>Experience</h2>
+          <div class="r-job">
+            <header><b>Goldman Sachs</b> — Software Engineer <span>Jun 2025 – Present</span></header>
+            <ul>
+              <li>Built Kafka + OpenTelemetry pipeline processing <b>5M+ trading metrics/day</b> for internal analytics (BQL, Snowflake), improving system observability.</li>
+              <li>Built optimized EOD reporting system generating <b>1M+ reports/day</b> using batching to reduce DB load.</li>
+              <li>Reduced trade-booking latency from <b>200ms to 7ms (28x faster)</b> via backend and query optimizations.</li>
+              <li>Migrated <b>100+ on-prem trading jobs</b> to cloud, reducing infra costs 30% and improving reliability 25%.</li>
+            </ul>
+          </div>
+          <div class="r-job">
+            <header><b>GEP Worldwide</b> — Software Engineer <span>Jan 2023 – Jun 2025</span></header>
+            <ul>
+              <li>Led development of a <b>GenAI-driven UI plugin framework</b> turning text prompts into deployable UIs, reducing frontend build time by <b>60%</b>.</li>
+              <li>Designed a <b>GenAI supplier recommendation system</b>, boosting supplier search accuracy by <b>40%</b>.</li>
+              <li>Handled client onboarding and critical issues — <b>30% faster</b> onboarding.</li>
+              <li>Implemented Cypress automated testing, cutting manual QA effort by <b>50%</b>.</li>
+            </ul>
+          </div>
+          <div class="r-job">
+            <header><b>Gamezop</b> — Frontend Developer Intern <span>Apr 2022 – Jan 2023</span></header>
+            <ul>
+              <li>Developed and deployed the Gamezop admin portal, boosting efficiency by <b>63%</b>.</li>
+              <li>Contributed to Quizzop &amp; Skillclash portals — live with around <b>40M users</b>.</li>
+            </ul>
+          </div>
+
+          <h2>Technical Skills</h2>
+          <p class="r-skills">
+            <b>Languages:</b> C++, JavaScript, TypeScript, Java, Go, .NET, SQL ·
+            <b>Frontend:</b> React, Next.js, Angular, Redux ·
+            <b>Backend &amp; Data:</b> Node.js, Kafka, MongoDB, PostgreSQL, DynamoDB ·
+            <b>Cloud &amp; DevOps:</b> AWS, Docker, Kubernetes, CI/CD, GitHub Actions, OpenTelemetry, GenAI ·
+            <b>Testing:</b> Cypress, Selenium
+          </p>
+
+          <h2>Projects</h2>
+          <div class="r-job">
+            <header><b>Pansari</b></header>
+            <ul><li>Communication portal between shopkeepers and customers for safe pandemic grocery shopping — slot booking, stock tracking, in-store passes (React, Tailwind, Node.js).</li></ul>
+          </div>
+          <div class="r-job">
+            <header><b>HuiHui-Bot</b></header>
+            <ul><li>High-quality Discord music bot with zero-config integration (JavaScript, Discord.js, discord-player).</li></ul>
+          </div>
+
+          <h2>Education</h2>
+          <div class="r-job">
+            <header><b>Thapar Institute of Engineering and Technology</b> — BE Computer Engineering <span>2019 – 2023</span></header>
+            <ul><li>GPA: <b>9.07/10</b> · OS, OOP, DSA, DBMS, AI Applications, NLP, Predictive Analytics, Networks.</li></ul>
+          </div>
+
+          <h2>Achievements</h2>
+          <ul class="r-ach">
+            <li><b>Winner:</b> HackOwasp 2.1 &amp; Incubative Github Hackathon.</li>
+            <li><b>Finalist:</b> Hack Against Covid, HackTU, Delhi Hacks 2.0.</li>
+            <li><b>Technical Secretary,</b> OWASP Student Chapter — introduced coding culture, helping 250+ students start in tech.</li>
+          </ul>
+        </article>
+      </div>
     </section>
 
     <!-- ===== WINDOW: TRADING TERMINAL APP ===== -->
@@ -329,7 +398,7 @@ We saw your OS-shaped portfolio and we'd like to talk...</textarea>
 
     <!-- ===== GITHUB LIVE WIDGET ===== -->
     <a class="gh-widget" id="ghWidget" href="https://github.com/Greatgabbar" target="_blank" rel="noopener" hidden>
-      <img id="ghAva" src="https://avatars.githubusercontent.com/u/63102346?v=4" alt="" />
+      <img id="ghAva" src="https://avatars.githubusercontent.com/u/63102346?v=4" alt="" width="40" height="40" style="width:40px;height:40px;border-radius:50%" />
       <div>
         <b>@Greatgabbar</b>
         <span id="ghStats">loading…</span>
@@ -345,6 +414,6 @@ We saw your OS-shaped portfolio and we'd like to talk...</textarea>
 
   </div>
 
-  <script src="os.js"></script>
+  <script src="os.js?v=11"></script>
 </body>
 </html>
