@@ -9,7 +9,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="os.css?v=11" />
+  <link rel="stylesheet" href="os.css?v=12" />
+  <!-- 📈 PRIVATE ANALYTICS (free, privacy-friendly, no cookies):
+       1. Sign up at https://www.goatcounter.com (2 minutes, free)
+       2. Pick a code, e.g. "shbm"  →  your dashboard: https://shbm.goatcounter.com
+       3. Replace MYCODE below with your code and remove these comment markers.
+  <script data-goatcounter="https://MYCODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  -->
 </head>
 <body>
 
@@ -45,6 +51,9 @@
       <button class="icon" data-open="win-contact"><span>✉️</span>contact.eml</button>
       <button class="icon" data-open="win-terminal"><span>💻</span>cmd.exe</button>
       <button class="icon" data-open="win-trading"><span>📈</span>trading_terminal.exe</button>
+      <button class="icon" data-open="win-chat"><span>🤖</span>ask_shubham.ai</button>
+      <button class="icon" data-open="win-wizard"><span>🧙</span>setup_wizard.exe</button>
+      <button class="icon" data-open="win-metrics"><span>📡</span>live_metrics.exe</button>
       <button class="icon" data-open="win-snake"><span>🐍</span>snake.exe</button>
       <button class="icon" data-open="win-recycle"><span>🗑️</span>recycle bin</button>
       <a class="icon" href="https://github.com/Greatgabbar" target="_blank" rel="noopener"><span>🐙</span>github.lnk</a>
@@ -308,13 +317,137 @@ We saw your OS-shaped portfolio and we'd like to talk...</textarea>
           <button class="file"><span>👻</span><b>imposter_syndrome.exe</b><i>deleted 2023 — runs on nobody now</i></button>
           <button class="file"><span>📉</span><b>200ms_latency.old</b><i>replaced by 7ms — good riddance</i></button>
           <button class="file"><span>📂</span><b>rejected_offers/</b><i>empty. folder kept out of optimism</i></button>
-          <button class="file"><span>🐛</span><b>bugs.zip</b><i>96.5% smaller since 2025</i></button>
+          <button class="file" id="bugsZip"><span>🐛</span><b>bugs.zip</b><i>96.5% smaller since 2025 — do NOT open</i></button>
           <button class="file"><span>💤</span><b>sleep_schedule.cfg</b><i>corrupted during hackathons</i></button>
           <button class="file"><span>🎓</span><b>plan_B.docx</b><i>never needed — see GPA 9.07</i></button>
         </div>
         <p class="bin-note mono dim">tip: clicking these does nothing. some things belong in the past.</p>
       </div>
     </section>
+
+    <!-- ===== WINDOW: ASK_SHUBHAM.AI (CHATBOT) ===== -->
+    <section class="window" id="win-chat" data-title="🤖 ask_shubham.ai" style="--x: 22%; --y: 8%; --w: 440px">
+      <header class="win-head">
+        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max" data-max></i></div>
+        <span class="win-title">🤖 ask_shubham.ai — v1.0 (0 tokens harmed)</span>
+      </header>
+      <div class="win-body chat">
+        <div class="chat-log" id="chatLog">
+          <div class="msg bot">Hey! 👋 I'm <b>shubham.ai</b> — trained on one very hireable human. Ask me anything.</div>
+          <div class="chat-chips" id="chatChips">
+            <button>Why hire him?</button>
+            <button>Tech stack?</button>
+            <button>Salary?</button>
+            <button>Tell a joke</button>
+          </div>
+        </div>
+        <form class="chat-inputrow" id="chatForm">
+          <input id="chatIn" placeholder="Ask about experience, skills, salary…" autocomplete="off" />
+          <button type="submit">➤</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== WINDOW: SETUP WIZARD ===== -->
+    <section class="window" id="win-wizard" data-title="🧙 setup_wizard.exe" style="--x: 26%; --y: 12%; --w: 480px">
+      <header class="win-head">
+        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max" data-max></i></div>
+        <span class="win-title">🧙 Shubham Setup Wizard v9.07</span>
+      </header>
+      <div class="win-body wizard" id="wizard">
+
+        <div class="wz-step" data-step="0">
+          <div class="wz-art">🧙‍♂️</div>
+          <h3>Welcome to the Shubham Installation Wizard</h3>
+          <p>This wizard will guide you through installing <b>Shubham Trivedi</b> (Software Engineer, v9.07) on your engineering team.</p>
+          <p class="dim">Estimated time: one interview round.<br />Space required: 1 desk · unlimited coffee.</p>
+        </div>
+
+        <div class="wz-step" data-step="1" hidden>
+          <h3>License Agreement</h3>
+          <div class="wz-eula mono">
+            SHUBHAM PUBLIC LICENSE (SPL) v9.07
+
+1. The Candidate is provided "AS IS" — already
+   exceptional, no configuration required.
+2. Warranty: lifetime. Bugs will be fixed by
+   the Candidate himself, usually before you
+   notice them.
+3. You MAY: assign hard problems, expect 28x
+   improvements, schedule interviews.
+4. You MAY NOT: expect him to use light mode.
+5. Side effects include: faster pipelines,
+   cleaner PRs, and suspiciously good demos.
+          </div>
+          <label class="wz-agree"><input type="checkbox" id="wzAgree" /> I agree this candidate is excellent</label>
+        </div>
+
+        <div class="wz-step" data-step="2" hidden>
+          <h3>Choose Install Location</h3>
+          <div class="wz-path mono">C:\YourCompany\Engineering\Shubham\</div>
+          <p class="dim">Components: backend_systems.pkg ☑ · genai_core.bin ☑ · frontend_finesse.dll ☑ · hackathon_energy.sys ☑ (all mandatory, sorry)</p>
+        </div>
+
+        <div class="wz-step" data-step="3" hidden>
+          <h3>Installing…</h3>
+          <div class="wz-barwrap"><div class="wz-bar" id="wzBar"></div></div>
+          <p class="mono wz-file" id="wzFile">preparing…</p>
+        </div>
+
+        <div class="wz-step" data-step="4" hidden>
+          <div class="wz-art">✅</div>
+          <h3>Installation Complete!</h3>
+          <p><b>Shubham v9.07</b> was installed successfully on your team.</p>
+          <p class="dim">Setup will now open your email client to finish activation.</p>
+        </div>
+
+        <footer class="wz-nav">
+          <button id="wzBack" disabled>‹ Back</button>
+          <div>
+            <button id="wzCancel">Cancel</button>
+            <button id="wzNext" class="wz-primary">Next ›</button>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <!-- ===== WINDOW: LIVE METRICS ===== -->
+    <section class="window" id="win-metrics" data-title="📡 live_metrics" style="--x: 18%; --y: 10%; --w: 640px">
+      <header class="win-head">
+        <div class="lights"><i class="l-close" data-close></i><i class="l-min" data-min></i><i class="l-max" data-max></i></div>
+        <span class="win-title">📡 live_metrics.exe — prod dashboard <span class="m-live">● LIVE</span></span>
+      </header>
+      <div class="win-body metrics">
+        <div class="m-grid">
+          <div class="m-panel">
+            <p class="m-title">TRADE BOOKING LATENCY <span class="m-unit">ms · target &lt;10</span></p>
+            <canvas id="mLat" height="90"></canvas>
+          </div>
+          <div class="m-panel">
+            <p class="m-title">KAFKA THROUGHPUT <span class="m-unit">k msgs/sec</span></p>
+            <canvas id="mThr" height="90"></canvas>
+          </div>
+        </div>
+        <div class="m-stats">
+          <div><span class="m-num" id="mReports">412,092</span><span class="m-lbl">EOD reports today</span></div>
+          <div><span class="m-num up">0.00%</span><span class="m-lbl">error rate</span></div>
+          <div><span class="m-num up">99.99%</span><span class="m-lbl">uptime</span></div>
+          <div><span class="m-num warn" id="mCoffee">97%</span><span class="m-lbl">coffee reserves</span></div>
+        </div>
+        <p class="m-note mono dim">numbers are simulated · the 7ms is not 😄</p>
+      </div>
+    </section>
+
+    <!-- ===== BSOD EASTER EGG ===== -->
+    <div class="bsod" id="bsod" hidden>
+      <div class="bsod-inner">
+        <p class="bsod-face">:(</p>
+        <p>SHBM-OS ran into a problem and needs to laugh it off.</p>
+        <p class="bsod-code mono">Stop code: CRITICAL_PROCESS_DIED<br />What failed: bugs.zip — bug not found in production</p>
+        <p class="bsod-pct mono">100% complete (it literally never happens)</p>
+        <p class="dim">Press any key — or click — to feel better.</p>
+      </div>
+    </div>
 
     <!-- ===== COMMAND PALETTE (CTRL+K) ===== -->
     <div class="palette" id="palette" hidden>
@@ -366,6 +499,9 @@ We saw your OS-shaped portfolio and we'd like to talk...</textarea>
       <button class="sm-item" data-open="win-contact">✉️ Contact</button>
       <button class="sm-item" data-open="win-terminal">💻 Terminal</button>
       <button class="sm-item" data-open="win-trading">📈 Trading Terminal</button>
+      <button class="sm-item" data-open="win-chat">🤖 ask_shubham.ai</button>
+      <button class="sm-item" data-open="win-wizard">🧙 Setup Wizard</button>
+      <button class="sm-item" data-open="win-metrics">📡 Live Metrics</button>
       <button class="sm-item" data-open="win-snake">🐍 Snake</button>
       <button class="sm-item" data-open="win-aboutpc">🖥️ About This PC</button>
       <hr />
@@ -414,6 +550,6 @@ We saw your OS-shaped portfolio and we'd like to talk...</textarea>
 
   </div>
 
-  <script src="os.js?v=11"></script>
+  <script src="os.js?v=12"></script>
 </body>
 </html>

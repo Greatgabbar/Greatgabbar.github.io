@@ -75,6 +75,8 @@ function openWin(id) {
   if (id === 'win-skills') animateTaskman();
   if (id === 'win-snake') snakeStart();
   if (id === 'win-terminal') setTimeout(() => termIn.focus(), 60);
+  if (id === 'win-metrics') metricsStart();
+  if (id === 'win-chat') setTimeout(() => document.getElementById('chatIn').focus(), 60);
   trackExplorer(id);
 }
 
@@ -82,6 +84,7 @@ function closeWin(win) {
   win.classList.remove('open', 'focus', 'max');
   win.style.display = '';   // clear inline display so CSS can hide it
   if (win.id === 'win-snake') snakePause();
+  if (win.id === 'win-metrics') metricsPause();
   syncTaskbar();
 }
 
@@ -278,7 +281,8 @@ const OPEN_TARGETS = {
   about: 'win-about', resume: 'win-resume', experience: 'win-exp',
   projects: 'win-projects', skills: 'win-skills', contact: 'win-contact',
   snake: 'win-snake', trading: 'win-trading', pc: 'win-aboutpc',
-  bin: 'win-recycle',
+  bin: 'win-recycle', chat: 'win-chat', ai: 'win-chat',
+  wizard: 'win-wizard', metrics: 'win-metrics',
 };
 
 const TERM_CMDS = {
@@ -523,6 +527,9 @@ const PAL_ACTIONS = [
   ['✉️', 'Contact', 'mail', () => openWin('win-contact')],
   ['💻', 'Terminal', 'cmd.exe', () => openWin('win-terminal')],
   ['📈', 'Trading Terminal', 'markets app', () => openWin('win-trading')],
+  ['🤖', 'ask_shubham.ai', 'chatbot', () => openWin('win-chat')],
+  ['🧙', 'Setup Wizard', 'install shubham', () => openWin('win-wizard')],
+  ['📡', 'Live Metrics', 'prod dashboard', () => openWin('win-metrics')],
   ['🖥️', 'About This PC', 'system properties', () => openWin('win-aboutpc')],
   ['🎨', 'Classic View', 'external ↗', () => window.open('classic.html', '_blank')],
   ['🐍', 'Snake', 'game', () => openWin('win-snake')],
@@ -701,6 +708,208 @@ document.getElementById('rebootBtn').addEventListener('click', () => {
 document.getElementById('mobileDismiss').addEventListener('click', () => {
   document.getElementById('mobileBanner').remove();
 });
+
+/* ============================================================
+   🤖 ASK_SHUBHAM.AI — scripted chatbot, zero tokens harmed
+   ============================================================ */
+const chatLog = document.getElementById('chatLog');
+const chatForm = document.getElementById('chatForm');
+const chatIn = document.getElementById('chatIn');
+
+const BOT_BRAIN = [
+  [/\b(hi|hello|hey|namaste|yo)\b/, 'Hello! Ask me why you should hire Shubham. Spoiler: I have receipts. 🧾'],
+  [/why.*(hire|him|shubham)|should we|convince/, '28x latency wins at Goldman Sachs, GenAI frameworks shipped to production at GEP, products serving 40M users at Gamezop, 9.07 GPA — and he answers emails suspiciously fast.'],
+  [/salary|pay|compensation|ctc|money/, '404: salary not found. That endpoint unlocks after you say hello → shubham072001@gmail.com 😄'],
+  [/kafka|pipeline|otel|telemetry|observab/, 'He built a Kafka + OpenTelemetry pipeline at Goldman Sachs processing 5M+ trading metrics/day into BQL and Snowflake. Observability is his love language.'],
+  [/goldman|current|job|work now/, 'Currently: Software Engineer at Goldman Sachs (Jun 2025 →). Highlights: 5M metrics/day pipeline, 1M reports/day EOD engine, trade latency 200ms → 7ms, 100+ jobs migrated to cloud.'],
+  [/gep|genai|ai |llm|ml\b/, 'At GEP Worldwide he led a GenAI framework that turned text prompts into deployable UIs (−60% build time) and built a supplier recommendation system (+40% accuracy). He was doing GenAI before it was on every resume.'],
+  [/gamezop|intern|frontend/, 'At Gamezop he shipped the admin portal (+63% efficiency) and worked on Quizzop & Skillclash — live for ~40M users.'],
+  [/skill|stack|tech|language/, 'Languages: C++, TypeScript, Java, Go. Frontend: React, Next.js, Angular. Backend: Node, Kafka, PostgreSQL, MongoDB. Cloud: AWS, Docker, K8s, CI/CD. Plus GenAI, Cypress, and an unhealthy amount of coffee.'],
+  [/education|college|thapar|gpa|degree/, 'BE Computer Engineering, Thapar Institute (2019–2023), GPA 9.07/10. Also OWASP Technical Secretary — mentored 250+ students into tech.'],
+  [/project|built|side/, 'Side projects: Pansari (pandemic grocery portal), HuiHui-Bot (Discord music bot), Certificate Generator, a Chrome dino remake and more — 54 public repos on GitHub. Try the projects folder on the desktop!'],
+  [/hackathon|award|achievement|win/, 'Winner of HackOwasp 2.1 and the Incubative Github Hackathon; finalist at three more. Hackathons are his cardio.'],
+  [/remote|location|relocat|hyderabad|where/, 'Based in Hyderabad, India. Remote-friendly, relocation-negotiable, timezone-flexible after coffee.'],
+  [/contact|email|hire|reach|interview/, 'Easy: shubham072001@gmail.com or +91 81782 61858. Or just open contact.eml on the desktop and hit SEND. I\'ll wait. ⏳'],
+  [/joke|funny|laugh/, 'His trade-booking latency is 7ms. His reply time to recruiters? Faster. ⚡'],
+  [/you|bot|real|gpt|model/, 'I\'m a fully scripted bot — zero tokens, zero hallucinations, 100% bias. The real Shubham is much smarter and only slightly slower.'],
+  [/thank|great|nice|cool|awesome/, 'Anytime! Now do the thing where you open contact.eml. 😉'],
+];
+
+function chatSay(text, who) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + who;
+  div.innerHTML = text;
+  chatLog.appendChild(div);
+  chatLog.scrollTop = chatLog.scrollHeight;
+  return div;
+}
+
+function botReply(q) {
+  const typing = chatSay('● ● ●', 'bot typing');
+  const hit = BOT_BRAIN.find(([re]) => re.test(q.toLowerCase()));
+  const answer = hit ? hit[1]
+    : 'That one\'s beyond my script — I\'m a very small model. 😅 The real Shubham answers fast though: <b>shubham072001@gmail.com</b>. Or try: "why hire him?", "tech stack?", "salary?"';
+  setTimeout(() => {
+    typing.classList.remove('typing');
+    typing.innerHTML = answer;
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }, 500 + Math.random() * 500);
+}
+
+chatForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const q = chatIn.value.trim();
+  if (!q) return;
+  chatIn.value = '';
+  chatSay(q.replace(/</g, '&lt;'), 'user');
+  botReply(q);
+});
+document.getElementById('chatChips').addEventListener('click', (e) => {
+  if (e.target.tagName !== 'BUTTON') return;
+  chatSay(e.target.textContent, 'user');
+  botReply(e.target.textContent);
+});
+
+/* ============================================================
+   🧙 SETUP WIZARD — install shubham on your team
+   ============================================================ */
+const WZ_FILES = [
+  'extracting talent.dll', 'installing work_ethic.sys', 'installing humor.exe',
+  'unpacking kafka_knowledge.pkg', 'compiling genai_core.bin',
+  'registering hackathon_energy.sys', 'optimizing latency.cfg (28x)',
+  'brewing coffee.service', 'finalizing offer_readiness.ini',
+];
+let wzStep = 0, wzTimer = null;
+const wzSteps = [...document.querySelectorAll('.wz-step')];
+const wzBack = document.getElementById('wzBack');
+const wzNext = document.getElementById('wzNext');
+const wzCancel = document.getElementById('wzCancel');
+const wzAgree = document.getElementById('wzAgree');
+const wzBar = document.getElementById('wzBar');
+const wzFile = document.getElementById('wzFile');
+
+function wzShow(n) {
+  wzStep = n;
+  wzSteps.forEach(s => { s.hidden = +s.dataset.step !== n; });
+  wzBack.disabled = n === 0 || n === 3 || n === 4;
+  wzNext.disabled = (n === 1 && !wzAgree.checked) || n === 3;
+  wzNext.textContent = n === 4 ? 'Finish ✉' : 'Next ›';
+  if (n === 3) wzInstall();
+}
+function wzInstall() {
+  let p = 0, i = 0;
+  clearInterval(wzTimer);
+  wzTimer = setInterval(() => {
+    p += 3 + Math.random() * 9;
+    if (i < WZ_FILES.length && p > (i + 1) * (100 / WZ_FILES.length)) wzFile.textContent = WZ_FILES[i++];
+    if (p >= 100) {
+      p = 100;
+      clearInterval(wzTimer);
+      playChime([659, 784]);
+      setTimeout(() => wzShow(4), 500);
+    }
+    wzBar.style.width = p + '%';
+  }, 180);
+}
+wzAgree.addEventListener('change', () => { wzNext.disabled = !wzAgree.checked; });
+wzNext.addEventListener('click', () => {
+  if (wzStep === 4) {
+    location.href = 'mailto:shubham072001@gmail.com?subject=Shubham%20installed%20successfully%20%E2%9C%85&body=The%20setup%20wizard%20worked.%20Let\'s%20talk.';
+    return;
+  }
+  wzShow(wzStep + 1);
+});
+wzBack.addEventListener('click', () => wzShow(Math.max(0, wzStep - 1)));
+wzCancel.addEventListener('click', () => {
+  closeWin(document.getElementById('win-wizard'));
+  toast('🧙', 'Setup cancelled', 'The wizard is patient. It will be here when you\'re ready.');
+  clearInterval(wzTimer);
+  wzBar.style.width = '0%';
+  wzAgree.checked = false;
+  wzShow(0);
+});
+
+/* ============================================================
+   📡 LIVE METRICS — simulated prod dashboard
+   ============================================================ */
+const mLat = document.getElementById('mLat');
+const mThr = document.getElementById('mThr');
+const mReports = document.getElementById('mReports');
+const mCoffee = document.getElementById('mCoffee');
+let mTimer = null;
+const latData = Array(60).fill(7);
+const thrData = Array(30).fill(58);
+let reportCount = 412092;
+
+function metricsStart() { if (!mTimer) mTimer = setInterval(mTick, 600); mTick(); }
+function metricsPause() { clearInterval(mTimer); mTimer = null; }
+
+function mTick() {
+  latData.push(Math.max(5.5, Math.min(11, 7 + (Math.random() - 0.5) * 2 + (Math.random() < 0.05 ? 2.5 : 0))));
+  latData.shift();
+  thrData.push(Math.max(20, 58 + (Math.random() - 0.5) * 28));
+  thrData.shift();
+  reportCount += Math.floor(200 + Math.random() * 700);
+  mReports.textContent = reportCount.toLocaleString('en-IN');
+  if (Math.random() < 0.04) mCoffee.textContent = Math.max(88, parseInt(mCoffee.textContent) - 1) + '%';
+  drawLine(mLat, latData, '#4fd8ff', 4, 12);
+  drawBars(mThr, thrData, '#8b7cff');
+}
+
+function drawLine(canvas, data, color, min, max) {
+  const dpr = window.devicePixelRatio || 1;
+  const w = canvas.clientWidth || 260, h = 90;
+  canvas.width = w * dpr; canvas.height = h * dpr;
+  const c = canvas.getContext('2d');
+  c.scale(dpr, dpr);
+  c.clearRect(0, 0, w, h);
+  c.strokeStyle = 'rgba(255,255,255,0.06)';
+  for (let i = 1; i < 4; i++) { c.beginPath(); c.moveTo(0, h / 4 * i); c.lineTo(w, h / 4 * i); c.stroke(); }
+  const y = v => h - ((v - min) / (max - min)) * (h - 10) - 5;
+  c.beginPath();
+  data.forEach((v, i) => { const x = (i / (data.length - 1)) * w; i ? c.lineTo(x, y(v)) : c.moveTo(x, y(v)); });
+  c.strokeStyle = color; c.lineWidth = 1.6; c.stroke();
+  c.lineTo(w, h); c.lineTo(0, h); c.closePath();
+  const g = c.createLinearGradient(0, 0, 0, h);
+  g.addColorStop(0, color + '44'); g.addColorStop(1, color + '00');
+  c.fillStyle = g; c.fill();
+  const last = data[data.length - 1];
+  c.fillStyle = color;
+  c.font = 'bold 11px "JetBrains Mono", monospace';
+  c.textAlign = 'right';
+  c.fillText(last.toFixed(1) + 'ms', w - 4, y(last) - 6);
+}
+
+function drawBars(canvas, data, color) {
+  const dpr = window.devicePixelRatio || 1;
+  const w = canvas.clientWidth || 260, h = 90;
+  canvas.width = w * dpr; canvas.height = h * dpr;
+  const c = canvas.getContext('2d');
+  c.scale(dpr, dpr);
+  c.clearRect(0, 0, w, h);
+  const bw = w / data.length;
+  data.forEach((v, i) => {
+    const bh = (v / 100) * (h - 12);
+    c.fillStyle = i === data.length - 1 ? '#4fd8ff' : color + 'aa';
+    c.fillRect(i * bw + 1, h - bh, bw - 2, bh);
+  });
+  c.fillStyle = '#4fd8ff';
+  c.font = 'bold 11px "JetBrains Mono", monospace';
+  c.textAlign = 'right';
+  c.fillText(Math.round(data[data.length - 1]) + 'k/s', w - 4, 12);
+}
+
+/* ============================================================
+   💙 BSOD EASTER EGG — clicking bugs.zip
+   ============================================================ */
+const bsod = document.getElementById('bsod');
+document.getElementById('bugsZip').addEventListener('click', () => {
+  bsod.hidden = false;
+  playChime([196, 165], 0.25, 0.18);
+});
+function bsodHide() { bsod.hidden = true; }
+bsod.addEventListener('click', bsodHide);
+document.addEventListener('keydown', () => { if (!bsod.hidden) bsodHide(); });
 
 /* ---------- GITHUB LIVE WIDGET ---------- */
 fetch('https://api.github.com/users/Greatgabbar')
