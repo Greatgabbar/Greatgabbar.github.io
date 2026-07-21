@@ -48,6 +48,57 @@ img { max-width: 100%; }
 .dim { color: var(--dim); }
 .mono { font-family: var(--mono); }
 
+/* ============ SCROLLBARS (global, themed) ============ */
+/* Firefox */
+* { scrollbar-width: thin; scrollbar-color: rgba(139, 124, 255, 0.55) transparent; }
+/* WebKit / Chromium / Safari */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  background-clip: padding-box;          /* creates the inset "floating pill" look */
+  border: 2.5px solid transparent;
+  min-height: 40px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #a596ff, #78e4ff);
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:active { background: var(--accent-2); background-clip: padding-box; }
+*::-webkit-scrollbar-corner { background: transparent; }
+/* horizontal scrollers get the same pill, rotated gradient */
+*::-webkit-scrollbar-thumb:horizontal {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  background-clip: padding-box;
+}
+
+/* terminal panes: phosphor-green thumb to match the shell */
+.term { scrollbar-color: rgba(43, 255, 136, 0.5) transparent; }
+.term::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2bff88, #17b35c);
+  background-clip: padding-box;
+}
+.term::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #6effb0, #2bff88);
+  background-clip: padding-box;
+}
+
+/* resume paper: subtle grey so it reads as a document viewer */
+.resume-doc { scrollbar-color: rgba(255, 255, 255, 0.4) transparent; }
+.resume-doc::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.38);
+  background-clip: padding-box;
+}
+.resume-doc::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.6);
+  background-clip: padding-box;
+}
+
+/* thin variant for small inner panes */
+.wz-eula::-webkit-scrollbar, .chat-log::-webkit-scrollbar,
+.palette-list::-webkit-scrollbar, .tasks::-webkit-scrollbar { width: 8px; height: 8px; }
+
 /* starfield */
 body::before {
   content: ''; position: fixed; inset: 0; pointer-events: none;
@@ -160,8 +211,6 @@ body::before {
 .l-max { background: #28c840; }
 
 .win-body { overflow-y: auto; font-size: 13.5px; line-height: 1.75; flex: 1; }
-.win-body::-webkit-scrollbar { width: 8px; }
-.win-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
 .pad { padding: 18px 22px; }
 
 /* notepad */

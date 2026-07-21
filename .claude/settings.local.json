@@ -19,7 +19,9 @@
       "Bash(git commit -m 'Merge everything into SHBM-OS: login screen, resume.pdf viewer, trading terminal & classic as apps, real shell with FS/history/completion, Ctrl+K palette *)",
       "Bash(git commit -m 'Fix window close bug; remove browser.exe; add sounds, GitHub live widget, About This PC, Konami code + confetti *)",
       "Bash(git commit -m 'Fix resume viewer \\(HTML paper doc instead of PDF iframe\\) and unstyled GitHub widget flash \\(cache-busted assets, hard-sized avatar\\) *)",
-      "Bash(git commit -m 'Add ask_shubham.ai chatbot, setup wizard, live metrics dashboard, BSOD easter egg, analytics-ready snippet *)"
+      "Bash(git commit -m 'Add ask_shubham.ai chatbot, setup wizard, live metrics dashboard, BSOD easter egg, analytics-ready snippet *)",
+      "Bash(cp \"C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--Portfolio\\\\2c0a4501-8ed6-46cd-bd58-b9c4b4880e04\\\\scratchpad\\\\serve.py\" /d/Portfolio/.claude/serve.py && ls /d/Portfolio/.claude/)",
+      "Bash(git commit -m 'Style scrollbars across all pages: rounded gradient pills, themed per surface *)"
     ]
   }
 }

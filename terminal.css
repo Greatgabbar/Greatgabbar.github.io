@@ -41,10 +41,25 @@ b { font-weight: 600; }
 .glow-green { text-shadow: 0 0 8px rgba(43, 255, 136, 0.55); }
 .center-sm { text-align: center; font-size: 12px; }
 
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--green-dim); }
+* { scrollbar-width: thin; scrollbar-color: rgba(43, 255, 136, 0.5) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--green), var(--green-dim));
+  background-clip: padding-box;
+  border: 2.5px solid transparent;
+  min-height: 40px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #6effb0, var(--green));
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:horizontal {
+  background: linear-gradient(90deg, var(--green), var(--green-dim));
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-corner { background: transparent; }
 
 /* ============ CRT EFFECTS ============ */
 .crt-scanlines {

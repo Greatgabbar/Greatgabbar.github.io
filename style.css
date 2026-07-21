@@ -41,10 +41,21 @@ img { max-width: 100%; display: block; }
 .center { text-align: center; margin-top: 3rem; }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--bg-softer); border-radius: 5px; }
-::-webkit-scrollbar-thumb:hover { background: var(--accent-1); }
+* { scrollbar-width: thin; scrollbar-color: rgba(124, 92, 255, 0.6) transparent; }
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  min-height: 40px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #9b7bff, #4ae0f5);
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-corner { background: transparent; }
 
 /* ============ BACKGROUND FX ============ */
 .bg-grid {

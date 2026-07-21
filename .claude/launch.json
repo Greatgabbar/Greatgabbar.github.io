@@ -4,7 +4,7 @@
     {
       "name": "portfolio",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "SimpleHTTPServer", "8710"],
+      "runtimeArgs": [".claude/serve.py", "8710"],
       "port": 8710
     }
   ]
