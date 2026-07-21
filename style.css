@@ -41,8 +41,10 @@ img { max-width: 100%; display: block; }
 .center { text-align: center; margin-top: 3rem; }
 
 /* Scrollbar */
-* { scrollbar-width: thin; scrollbar-color: rgba(124, 92, 255, 0.6) transparent; }
-::-webkit-scrollbar { width: 11px; height: 11px; }
+@supports not selector(::-webkit-scrollbar) {
+  * { scrollbar-width: thin; scrollbar-color: rgba(124, 92, 255, 0.6) transparent; }
+}
+::-webkit-scrollbar { width: 13px; height: 13px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
   border-radius: 999px;

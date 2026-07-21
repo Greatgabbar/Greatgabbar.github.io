@@ -41,15 +41,17 @@ b { font-weight: 600; }
 .glow-green { text-shadow: 0 0 8px rgba(43, 255, 136, 0.55); }
 .center-sm { text-align: center; font-size: 12px; }
 
-* { scrollbar-width: thin; scrollbar-color: rgba(43, 255, 136, 0.5) transparent; }
-::-webkit-scrollbar { width: 10px; height: 10px; }
+@supports not selector(::-webkit-scrollbar) {
+  * { scrollbar-width: thin; scrollbar-color: rgba(43, 255, 136, 0.55) transparent; }
+}
+::-webkit-scrollbar { width: 13px; height: 13px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
   border-radius: 999px;
   background: linear-gradient(180deg, var(--green), var(--green-dim));
   background-clip: padding-box;
-  border: 2.5px solid transparent;
-  min-height: 40px;
+  border: 3px solid transparent;
+  min-height: 44px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #6effb0, var(--green));

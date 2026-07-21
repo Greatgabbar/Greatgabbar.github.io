@@ -49,17 +49,22 @@ img { max-width: 100%; }
 .mono { font-family: var(--mono); }
 
 /* ============ SCROLLBARS (global, themed) ============ */
-/* Firefox */
-* { scrollbar-width: thin; scrollbar-color: rgba(139, 124, 255, 0.55) transparent; }
+/* Firefox only — Chrome 121+ DISABLES ::-webkit-scrollbar styling when
+   scrollbar-width/color are set, so these must stay out of its way. */
+@supports not selector(::-webkit-scrollbar) {
+  * { scrollbar-width: thin; scrollbar-color: rgba(139, 124, 255, 0.6) transparent; }
+  .term { scrollbar-color: rgba(43, 255, 136, 0.55) transparent; }
+  .resume-doc { scrollbar-color: rgba(255, 255, 255, 0.45) transparent; }
+}
 /* WebKit / Chromium / Safari */
-*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar { width: 13px; height: 13px; }
 *::-webkit-scrollbar-track { background: transparent; }
 *::-webkit-scrollbar-thumb {
   border-radius: 999px;
   background: linear-gradient(180deg, var(--accent), var(--accent-2));
   background-clip: padding-box;          /* creates the inset "floating pill" look */
-  border: 2.5px solid transparent;
-  min-height: 40px;
+  border: 3px solid transparent;         /* 13 − 6 = 7px visible pill */
+  min-height: 44px;
 }
 *::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #a596ff, #78e4ff);
@@ -74,7 +79,6 @@ img { max-width: 100%; }
 }
 
 /* terminal panes: phosphor-green thumb to match the shell */
-.term { scrollbar-color: rgba(43, 255, 136, 0.5) transparent; }
 .term::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #2bff88, #17b35c);
   background-clip: padding-box;
@@ -85,7 +89,6 @@ img { max-width: 100%; }
 }
 
 /* resume paper: subtle grey so it reads as a document viewer */
-.resume-doc { scrollbar-color: rgba(255, 255, 255, 0.4) transparent; }
 .resume-doc::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.38);
   background-clip: padding-box;
@@ -95,9 +98,6 @@ img { max-width: 100%; }
   background-clip: padding-box;
 }
 
-/* thin variant for small inner panes */
-.wz-eula::-webkit-scrollbar, .chat-log::-webkit-scrollbar,
-.palette-list::-webkit-scrollbar, .tasks::-webkit-scrollbar { width: 8px; height: 8px; }
 
 /* starfield */
 body::before {

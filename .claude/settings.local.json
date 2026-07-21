@@ -21,7 +21,8 @@
       "Bash(git commit -m 'Fix resume viewer \\(HTML paper doc instead of PDF iframe\\) and unstyled GitHub widget flash \\(cache-busted assets, hard-sized avatar\\) *)",
       "Bash(git commit -m 'Add ask_shubham.ai chatbot, setup wizard, live metrics dashboard, BSOD easter egg, analytics-ready snippet *)",
       "Bash(cp \"C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--Portfolio\\\\2c0a4501-8ed6-46cd-bd58-b9c4b4880e04\\\\scratchpad\\\\serve.py\" /d/Portfolio/.claude/serve.py && ls /d/Portfolio/.claude/)",
-      "Bash(git commit -m 'Style scrollbars across all pages: rounded gradient pills, themed per surface *)"
+      "Bash(git commit -m 'Style scrollbars across all pages: rounded gradient pills, themed per surface *)",
+      "Bash(git commit -m 'Fix scrollbar styling being ignored in Chrome 121+ \\(scope scrollbar-width to Firefox\\), thicken pill *)"
     ]
   }
 }
